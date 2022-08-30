@@ -1,5 +1,15 @@
+import { ThemeProvider } from "styled-components";
+import Register from "./components/Register/Register";
+import styledMainTheme from "./styledMainTheme";
+
 function App() {
-  return <div className="container-app"></div>;
+  return (
+    <ThemeProvider theme={styledMainTheme}>
+      <div className="container-app">
+        <Register />
+      </div>
+    </ThemeProvider>
+  );
 }
 
 export default App;
