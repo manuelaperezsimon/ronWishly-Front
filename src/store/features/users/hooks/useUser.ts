@@ -19,7 +19,7 @@ const useUser = () => {
       await axios.post(`${apiURL}users/register`, {
         userName: registerUserData.userName,
         password: registerUserData.password,
-        repeatPassword: registerUserData.password,
+        repeatPassword: registerUserData.repeatPassword,
       });
 
       successModal("Great! You have been registered! :)");
