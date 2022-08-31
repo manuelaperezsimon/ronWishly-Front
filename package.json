@@ -13,6 +13,7 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.26",
+    "axios": "^0.27.2",
     "poppins-font": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -53,13 +54,12 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/*.tsx",
-      "src/.ts",
+      "src/**/*.tsx",
+      "src/**/*.ts",
       "!src/index.tsx",
       "!src/react-app-env.d.ts",
       "!src/reportWebVitals.ts",
-      "!src/**/.test.tsx",
-      "!src/setupTests.ts"
+      "!src/**/.test.tsx"
     ]
   }
 }
