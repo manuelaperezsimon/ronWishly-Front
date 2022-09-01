@@ -5,12 +5,14 @@ interface ButtonProps {
   classNameTypeButton: string;
   actionOnclick: () => void;
   type: "submit" | "button";
+  isDisable?: boolean;
 }
 const Button = ({
   buttonText,
   actionOnclick,
   classNameTypeButton,
   type,
+  isDisable,
 }: ButtonProps): JSX.Element => {
   return (
     <ButtonStyled>
@@ -18,6 +20,7 @@ const Button = ({
         className={classNameTypeButton}
         type={type}
         onClick={() => actionOnclick()}
+        disabled={isDisable}
       >
         {buttonText}{" "}
       </button>

@@ -5,11 +5,11 @@ import styledMainTheme from "./styledMainTheme";
 function App() {
   return (
     <ThemeProvider theme={styledMainTheme}>
-      <div className="container-app">
-        <Register />
-      </div>
+      <Register />
     </ThemeProvider>
   );
 }
 
+// minified version is also included
+// import 'react-toastify/dist/ReactToastify.min.css';
 export default App;

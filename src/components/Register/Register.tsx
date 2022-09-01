@@ -1,68 +1,119 @@
+import { SyntheticEvent, useState } from "react";
+import useUser from "../../store/features/users/hooks/useUser";
 import Button from "../Button/Button";
 import { RegisterStyled } from "./RegisterStyled";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = (): JSX.Element => {
+  const initialState = {
+    userName: "",
+    password: "",
+    repeatPassword: "",
+  };
+
+  debugger;
+  const { register } = useUser();
+  debugger;
+  const [formData, setFormData] = useState(initialState);
+  const [fieldStatus, setFieldStatus] = useState("");
+
+  const onSubmitData = async (event: SyntheticEvent) => {
+    event.preventDefault();
+
+    if (formData.password !== formData.repeatPassword) {
+      setFieldStatus("form__input--wrong");
+
+      setFormData({
+        userName: formData.userName,
+        password: initialState.password,
+        repeatPassword: initialState.repeatPassword,
+      });
+    } else {
+      register(formData);
+
+      setFormData(initialState);
+    }
+  };
+
+  const onChangeData = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFieldStatus("");
+    setFormData({ ...formData, [event.target.id]: event.target.value });
+  };
+
+  const hasEmptyFields =
+    formData.userName.length < 5 ||
+    formData.password.length < 5 ||
+    formData.repeatPassword.length < 5;
+
   return (
     <>
-      <RegisterStyled>
-        <h2>Welcome Onboard!</h2>
-        <form action="" className="form-register">
+      <RegisterStyled className="form" onSubmit={onSubmitData}>
+        <ToastContainer />
+        <img
+          src="img/brand-logo.png"
+          alt="ronWishly logo"
+          className="logo__picture"
+        />
+        <h2 className="form__heading">Welcome Onboard!</h2>
+        <form action="" className="form-register" noValidate>
           <div className="form-register__group">
-            <label htmlFor="userName" className="form-register__label">
+            <label htmlFor="userName" className="form__label">
               User Name:
             </label>
             <input
               type="text"
               id="userName"
-              className="form-register__input input-text"
+              className="form__input input-userName"
               placeholder="Create you user name :)"
-              value={""}
-              onChange={() => {}}
               autoComplete="off"
               required
+              value={formData.userName}
+              onChange={onChangeData}
             />
           </div>
           <div className="form-register__group">
-            <label htmlFor="password" className="form-register__label">
+            <label htmlFor="password" className="form__label">
               Password:
             </label>
             <input
               type="password"
               id="password"
-              className="form-register__input input-password"
+              className={`form__input input-password ${fieldStatus}`}
               placeholder="Put your password here!"
-              value={""}
-              onChange={() => {}}
               autoComplete="off"
               required
+              value={formData.password}
+              onChange={onChangeData}
             />
           </div>
           <div className="form-register__group">
-            <label htmlFor="repeatPassword" className="form-register__label">
+            <label htmlFor="repeatPassword" className="form__label">
               Repeat password:
             </label>
             <input
               type="password"
               id="repeatPassword"
-              className="form-register__input input-repeat-password"
+              className={`form__input input-repeat-password ${fieldStatus}`}
               placeholder="Repeat your password"
-              value={""}
-              onChange={() => {}}
               autoComplete="off"
               required
+              value={formData.repeatPassword}
+              onChange={onChangeData}
             />
           </div>
+          <Button
+            buttonText="Register"
+            type="submit"
+            classNameTypeButton="button--big"
+            actionOnclick={() => {}}
+            isDisable={hasEmptyFields}
+          />
+          <div className="form-register__link">
+            <span>Already have an account?</span>
+            <a href="/">Sign In</a>
+          </div>
         </form>{" "}
-        <Button
-          type="submit"
-          buttonText="Register"
-          classNameTypeButton="button--big"
-          actionOnclick={() => {}}
-        />
-        <div className="form-register__link">
-          <span>Already have an account?</span>
-          <a href="/">Sign In</a>
-        </div>
       </RegisterStyled>
     </>
   );
