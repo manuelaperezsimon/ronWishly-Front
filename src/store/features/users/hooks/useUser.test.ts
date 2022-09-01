@@ -25,7 +25,7 @@ describe("Given a useUser hook", () => {
     });
 
     describe("When invoke register function with a mockUser without required properties", () => {
-      test.only("Then it should send a modal error", async () => {
+      test("Then it should send a modal error", async () => {
         const mockUser2: RegisterUserData = {
           userName: "Federico",
           password: "vivaisdi",
