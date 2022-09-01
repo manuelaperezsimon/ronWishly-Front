@@ -12,9 +12,8 @@ const Register = (): JSX.Element => {
     repeatPassword: "",
   };
 
-  debugger;
   const { register } = useUser();
-  debugger;
+
   const [formData, setFormData] = useState(initialState);
   const [fieldStatus, setFieldStatus] = useState("");
 
