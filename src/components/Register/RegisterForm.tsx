@@ -1,11 +1,11 @@
 import { SyntheticEvent, useState } from "react";
 import useUser from "../../store/features/users/hooks/useUser";
 import Button from "../Button/Button";
-import { RegisterStyled } from "./RegisterStyled";
+import { RegisterStyled } from "./RegisterFormStyled";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Register = (): JSX.Element => {
+const RegisterForm = (): JSX.Element => {
   const initialState = {
     userName: "",
     password: "",
@@ -118,4 +118,4 @@ const Register = (): JSX.Element => {
   );
 };
 
-export default Register;
+export default RegisterForm;

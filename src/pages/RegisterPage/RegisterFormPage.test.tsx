@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import RegisterPage from "./RegisterPage";
+import RegisterPage from "./RegisterFormPage";
 
 describe("Given the RegiterPage page", () => {
   describe("When it's instantiated", () => {

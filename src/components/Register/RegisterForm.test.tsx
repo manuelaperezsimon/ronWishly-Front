@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Register from "./Register";
+import RegisterForm from "./RegisterForm";
 
 const mockUser = jest.fn();
 
@@ -11,7 +11,7 @@ jest.mock("../../store/features/users/hooks/useUser", () => () => ({
 describe("Given a form component", () => {
   describe("When instantiated", () => {
     test("Then it should display a form with a title, three inputs, a button and a link", () => {
-      render(<Register />);
+      render(<RegisterForm />);
 
       const elementsInScreen = [
         screen.getByAltText("ronWishly logo"),
@@ -33,7 +33,7 @@ describe("Given a form component", () => {
         const filledInput2 = "1234";
         const filledInput3 = "1234";
 
-        render(<Register />);
+        render(<RegisterForm />);
 
         const usernameInput = screen.getByLabelText(
           "User Name:"
@@ -61,7 +61,7 @@ describe("Given a form component", () => {
         const passwordInputFilled = "12345";
         const repeatInputFilled = "12345";
 
-        render(<Register />);
+        render(<RegisterForm />);
 
         const usernameInput = screen.getByLabelText(
           "User Name:"
@@ -90,7 +90,7 @@ describe("Given a form component", () => {
           const fakePassword = "holaquetal";
           const repeatFakePassword = "chauadeu";
 
-          render(<Register />);
+          render(<RegisterForm />);
 
           const form = {
             userName: screen.getByLabelText("User Name:") as HTMLInputElement,
