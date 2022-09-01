@@ -9,6 +9,8 @@ const ButtonStyled = styled.div`
       top: 611px;
       border-radius: 10px;
       background-color: ${(props) => props.theme.yellowColor};
+      font-size: 20px;
+      font-family: "Poppins", sans-serif;
     }
   }
 `;

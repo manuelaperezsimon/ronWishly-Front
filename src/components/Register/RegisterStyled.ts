@@ -10,6 +10,10 @@ const RegisterStyled = styled.div`
   background-color: ${(props) => props.theme.greyColor};
   font-size: 20px;
 
+  h2 {
+    margin: 0px;
+  }
+
   .form-register {
     flex-direction: column;
     padding: 0;
@@ -25,12 +29,12 @@ const RegisterStyled = styled.div`
     width: 300px;
   }
 
-  .form-register__label {
+  .form__label {
     margin-bottom: 10px;
     margin-left: 17px;
   }
 
-  .form-register__input {
+  .form__input {
     height: 60px;
     border-radius: 30px;
     margin-bottom: 30px;
@@ -38,6 +42,10 @@ const RegisterStyled = styled.div`
     border: 1rem;
     font-size: 16px;
     font-family: inherit;
+  }
+
+  .form__input--wrong {
+    border: solid red 1px;
   }
 `;
 
