@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import { toast } from "react-toastify";
-import Wrapper from "../../../../utils/Wrapper";
-import { RegisterUserData } from "../../../interfaces/usersInterfaces";
+import Wrapper from "../utils/Wrapper";
+import { RegisterUserData } from "../store/interfaces/usersInterfaces";
 import useUser from "./useUser";
 
 jest.mock("react-toastify");
@@ -45,7 +45,7 @@ describe("Given a useUser hook", () => {
         } = renderHook(useUser, { wrapper: Wrapper });
         await register(mockUser2);
 
-        expect(toast.error).toHaveBeenCalledWith("Ups, something went wrong", {
+        expect(toast.error).toHaveBeenCalledWith("Oops, something went wrong", {
           position: toast.POSITION.TOP_CENTER,
         });
       });

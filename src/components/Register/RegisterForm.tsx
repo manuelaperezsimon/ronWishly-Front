@@ -1,5 +1,5 @@
 import { SyntheticEvent, useState } from "react";
-import useUser from "../../store/features/users/hooks/useUser";
+import useUser from "../../hooks/useUser";
 import Button from "../Button/Button";
 import { RegisterStyled } from "./RegisterFormStyled";
 import { ToastContainer } from "react-toastify";

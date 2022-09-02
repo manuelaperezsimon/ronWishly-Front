@@ -1,10 +1,37 @@
+import { SyntheticEvent, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import useUser from "../../hooks/useUser";
 import Button from "../Button/Button";
 import { LoginFormStyled } from "./LoginFormStyled";
 
 const LoginForm = (): JSX.Element => {
+  const initialState = {
+    userName: "",
+    password: "",
+  };
+
+  const { login } = useUser();
+  const [formData, setFormData] = useState(initialState);
+
+  const onSubmitData = (event: SyntheticEvent) => {
+    event.preventDefault();
+    login({
+      userName: formData.userName,
+      password: formData.password,
+    });
+  };
+
+  const onChangeData = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [event.target.id]: event.target.value });
+  };
+
+  const hasEmptyFields =
+    formData.userName.length < 5 || formData.password.length < 5;
+
   return (
     <>
-      <LoginFormStyled className="form" onSubmit={() => {}}>
+      <LoginFormStyled className="form" onSubmit={onSubmitData}>
+        <ToastContainer />
         <img
           src="img/circles.png"
           alt="two circles yellows"
@@ -24,12 +51,12 @@ const LoginForm = (): JSX.Element => {
             <input
               type="text"
               id="userName"
-              className="form__input input-userName"
+              className="form__input input-password"
               placeholder="Enter your user name :)"
               autoComplete="off"
               required
-              value={""}
-              onChange={() => {}}
+              value={formData.userName}
+              onChange={onChangeData}
             />
           </div>
           <div className="form-login__group">
@@ -39,12 +66,12 @@ const LoginForm = (): JSX.Element => {
             <input
               type="password"
               id="password"
-              className={`form__input input-password ${""}`}
+              className="form__input input-password"
               placeholder="Here your password"
               autoComplete="off"
               required
-              value={""}
-              onChange={() => {}}
+              value={formData.password}
+              onChange={onChangeData}
             />
           </div>
 
@@ -53,7 +80,7 @@ const LoginForm = (): JSX.Element => {
             type="submit"
             classNameTypeButton="button--big"
             actionOnclick={() => {}}
-            isDisable={true}
+            isDisable={hasEmptyFields}
           />
         </form>{" "}
       </LoginFormStyled>

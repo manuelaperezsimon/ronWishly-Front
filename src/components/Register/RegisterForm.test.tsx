@@ -1,17 +1,18 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import Wrapper from "../../utils/Wrapper";
 import RegisterForm from "./RegisterForm";
 
 const mockUser = jest.fn();
 
-jest.mock("../../store/features/users/hooks/useUser", () => () => ({
+jest.mock("../../hooks/useUser", () => () => ({
   register: mockUser,
 }));
 
 describe("Given a form component", () => {
   describe("When instantiated", () => {
     test("Then it should display a form with a title, three inputs, a button and a link", () => {
-      render(<RegisterForm />);
+      render(<RegisterForm />, { wrapper: Wrapper });
 
       const elementsInScreen = [
         screen.getByAltText("ronWishly logo"),
