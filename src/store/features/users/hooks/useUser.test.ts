@@ -1,4 +1,6 @@
+import { renderHook } from "@testing-library/react";
 import { toast } from "react-toastify";
+import Wrapper from "../../../../utils/Wrapper";
 import { RegisterUserData } from "../../../interfaces/usersInterfaces";
 import useUser from "./useUser";
 
@@ -13,7 +15,11 @@ describe("Given a useUser hook", () => {
         repeatPassword: "vivaisdi",
       };
 
-      const { register } = useUser();
+      const {
+        result: {
+          current: { register },
+        },
+      } = renderHook(useUser, { wrapper: Wrapper });
       await register(mockUser);
 
       expect(toast.success).toHaveBeenCalledWith(
@@ -32,7 +38,11 @@ describe("Given a useUser hook", () => {
           repeatPassword: "",
         };
 
-        const { register } = useUser();
+        const {
+          result: {
+            current: { register },
+          },
+        } = renderHook(useUser, { wrapper: Wrapper });
         await register(mockUser2);
 
         expect(toast.error).toHaveBeenCalledWith("Ups, something went wrong", {
