@@ -51,7 +51,7 @@ const LoginForm = (): JSX.Element => {
             <input
               type="text"
               id="userName"
-              className="form__input input-password"
+              className="form__input"
               placeholder="Enter your user name :)"
               autoComplete="off"
               required
