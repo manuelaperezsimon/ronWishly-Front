@@ -1,17 +1,26 @@
 import styled from "styled-components";
 
 const RegisterStyled = styled.div`
-  display: flex;
-  align-self: center;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 700px;
+  display: grid;
+  justify-items: center;
   background-color: ${(props) => props.theme.greyColor};
   font-size: 20px;
 
   h2 {
     margin: 0px;
+    margin-top: 80px;
+  }
+
+  .circles__picture {
+    position: absolute;
+    top: -75px;
+    left: -50px;
+  }
+
+  .logo__picture {
+    width: 130px;
+    margin-top: 100px;
+    position: relative;
   }
 
   .form-register {
@@ -37,7 +46,7 @@ const RegisterStyled = styled.div`
   .form__input {
     height: 60px;
     border-radius: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 45px;
     padding: 15px;
     border: 1rem;
     font-size: 16px;
@@ -46,6 +55,14 @@ const RegisterStyled = styled.div`
 
   .form__input--wrong {
     border: solid red 1px;
+  }
+
+  .form-register__link {
+    margin-top: 25px;
+    font-size: 17px;
+    justify-content: center;
+    display: flex;
+    gap: 8px;
   }
 `;
 
