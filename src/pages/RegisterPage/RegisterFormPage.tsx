@@ -1,6 +1,6 @@
 import RegisterForm from "../../components/Register/RegisterForm";
 
-const RegisterPage = (): JSX.Element => {
+const RegisterFormPage = (): JSX.Element => {
   return <RegisterForm />;
 };
-export default RegisterPage;
+export default RegisterFormPage;

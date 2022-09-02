@@ -50,6 +50,11 @@ const RegisterForm = (): JSX.Element => {
       <RegisterStyled className="form" onSubmit={onSubmitData}>
         <ToastContainer />
         <img
+          src="img/circles.png"
+          alt="two circles yellow"
+          className="circles__picture"
+        />
+        <img
           src="img/brand-logo.png"
           alt="ronWishly logo"
           className="logo__picture"
@@ -110,7 +115,7 @@ const RegisterForm = (): JSX.Element => {
           />
           <div className="form-register__link">
             <span>Already have an account?</span>
-            <a href="/">Sign In</a>
+            <a href="/login">Sign In</a>
           </div>
         </form>{" "}
       </RegisterStyled>
