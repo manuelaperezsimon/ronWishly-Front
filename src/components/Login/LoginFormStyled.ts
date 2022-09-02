@@ -56,14 +56,6 @@ const LoginFormStyled = styled.div`
   .form__input--wrong {
     border: solid red 1px;
   }
-
-  .form-login__link {
-    margin-top: 25px;
-    font-size: 17px;
-    justify-content: center;
-    display: flex;
-    gap: 8px;
-  }
 `;
 
 export { LoginFormStyled };
