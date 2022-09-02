@@ -20,7 +20,6 @@ describe("Given a form component", () => {
         screen.getByPlaceholderText("Put your password here!"),
         screen.getByPlaceholderText("Repeat your password"),
         screen.getByRole("button"),
-        screen.getByText("Already have an account?"),
       ];
 
       elementsInScreen.forEach((element) =>

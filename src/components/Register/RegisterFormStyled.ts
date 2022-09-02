@@ -64,6 +64,11 @@ const RegisterStyled = styled.div`
     display: flex;
     gap: 8px;
   }
+
+  a {
+    text-decoration: none;
+    color: ${(props) => props.theme.yellowColor};
+  }
 `;
 
 export { RegisterStyled };

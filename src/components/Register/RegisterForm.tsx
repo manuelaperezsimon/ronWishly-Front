@@ -113,10 +113,6 @@ const RegisterForm = (): JSX.Element => {
             actionOnclick={() => {}}
             isDisable={hasEmptyFields}
           />
-          <div className="form-register__link">
-            <span>Already have an account?</span>
-            <a href="/login">Sign In</a>
-          </div>
         </form>{" "}
       </RegisterStyled>
     </>
