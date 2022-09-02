@@ -13,7 +13,6 @@ describe("Given a Login Component", () => {
         screen.getByPlaceholderText("Enter your user name :)"),
         screen.getByPlaceholderText("Here your password"),
         screen.getByRole("button"),
-        screen.getByText("Don't have an account?"),
       ];
 
       elementsInScreen.forEach((element) => {

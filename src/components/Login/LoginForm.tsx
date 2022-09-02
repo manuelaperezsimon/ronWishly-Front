@@ -55,10 +55,6 @@ const LoginForm = (): JSX.Element => {
             actionOnclick={() => {}}
             isDisable={true}
           />
-          <div className="form-login__link">
-            <span>Don't have an account?</span>
-            <a href="/register">Sign Up</a>
-          </div>
         </form>{" "}
       </LoginFormStyled>
     </>

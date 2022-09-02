@@ -13,6 +13,11 @@ const ButtonStyled = styled.div`
       font-family: "Poppins", sans-serif;
     }
   }
+
+  .login-text__register-link {
+    color: ${(props) => props.theme.yellowColor};
+    text-decoration: none;
+  }
 `;
 
 export { ButtonStyled };
