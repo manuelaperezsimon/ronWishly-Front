@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const ButtonStyled = styled.div`
+  color: ${(props) => props.theme.yellowColor};
+  text-decoration: none;
+
   .button {
     &--big {
       height: 70px;
@@ -12,11 +15,6 @@ const ButtonStyled = styled.div`
       font-size: 20px;
       font-family: "Poppins", sans-serif;
     }
-  }
-
-  .login-text__register-link {
-    color: ${(props) => props.theme.yellowColor};
-    text-decoration: none;
   }
 `;
 
