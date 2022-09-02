@@ -51,7 +51,8 @@ const useUser = () => {
       if (token) {
         localStorage.setItem("token", token);
 
-        const userInfo: User = jwtDecode(token);
+        const userInfo: User = { ...jwtDecode(token), token };
+
         dispatch(loginUsersActionCreator(userInfo));
       }
     } catch (error: any) {
