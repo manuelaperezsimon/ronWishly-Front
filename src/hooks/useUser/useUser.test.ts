@@ -1,22 +1,19 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { renderHook } from "@testing-library/react";
 import { toast } from "react-toastify";
-import Wrapper from "../utils/Wrapper";
+import Wrapper from "../../utils/Wrapper";
 import {
   ProtoUser,
   RegisterUserData,
-  User,
-} from "../store/interfaces/usersInterfaces";
+} from "../../store/interfaces/usersInterfaces";
 import useUser from "./useUser";
 
 jest.mock("react-toastify");
 const mockUseDispatch = jest.fn();
 
-jest.mock("../store/hooks", () => ({
-  ...jest.requireActual("../store/hooks"),
+jest.mock("../../store/hooks", () => ({
+  ...jest.requireActual("../../store/hooks"),
   useAppDispatch: () => mockUseDispatch,
 }));
-
-const mockJwtDecode = jest.fn();
 
 describe("Given a useUser hook", () => {
   describe("When invoke register function with a mockUser", () => {
