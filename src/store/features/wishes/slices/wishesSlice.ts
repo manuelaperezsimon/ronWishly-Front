@@ -7,8 +7,9 @@ const wishesSlice = createSlice({
   name: "wishes",
   initialState: wishesInitialState,
   reducers: {
-    loadAllWishes: (previousWishes, action: PayloadAction<Wishes>) =>
-      action.payload,
+    loadAllWishes: (previousWishes, action: PayloadAction<Wishes>) => [
+      ...action.payload,
+    ],
   },
 });
 
