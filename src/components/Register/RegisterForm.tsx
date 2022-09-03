@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import { RegisterStyled } from "./RegisterFormStyled";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = (): JSX.Element => {
   const initialState = {
