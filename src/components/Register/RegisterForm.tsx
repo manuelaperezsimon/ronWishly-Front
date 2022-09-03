@@ -1,9 +1,10 @@
 import { SyntheticEvent, useState } from "react";
-import useUser from "../../hooks/useUser";
+import useUser from "../../hooks/useUser/useUser";
 import Button from "../Button/Button";
 import { RegisterStyled } from "./RegisterFormStyled";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const RegisterForm = (): JSX.Element => {
   const initialState = {
@@ -13,6 +14,7 @@ const RegisterForm = (): JSX.Element => {
   };
 
   const { register } = useUser();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState(initialState);
   const [fieldStatus, setFieldStatus] = useState("");
@@ -29,7 +31,11 @@ const RegisterForm = (): JSX.Element => {
         repeatPassword: initialState.repeatPassword,
       });
     } else {
-      register(formData);
+      const registerResult = await register(formData);
+
+      if (registerResult) {
+        navigate("/login");
+      }
 
       setFormData(initialState);
     }

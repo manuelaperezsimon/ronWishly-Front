@@ -1,11 +1,18 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
 import Wrapper from "../../utils/Wrapper";
 import RegisterForm from "./RegisterForm";
 
 const mockUser = jest.fn();
+const mockNavigate = jest.fn();
 
-jest.mock("../../hooks/useUser", () => () => ({
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+}));
+
+jest.mock("../../hooks/useUser/useUser", () => () => ({
   register: mockUser,
 }));
 

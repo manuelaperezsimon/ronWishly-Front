@@ -6,9 +6,9 @@ import {
   RegisterUserData,
   User,
   UserToken,
-} from "../store/interfaces/usersInterfaces";
-import { loginUsersActionCreator } from "../store/features/users/slices/usersSlice";
-import { useAppDispatch } from "../store/hooks";
+} from "../../store/interfaces/usersInterfaces";
+import { loginUsersActionCreator } from "../../store/features/users/slices/usersSlice";
+import { useAppDispatch } from "../../store/hooks";
 
 export const apiURL = process.env.REACT_APP_API_URL;
 
@@ -34,8 +34,10 @@ const useUser = () => {
       });
 
       successModal("Great! You have been registered! :)");
+      return true;
     } catch (error) {
       errorModal("Oops, something went wrong");
+      return false;
     }
   };
 
