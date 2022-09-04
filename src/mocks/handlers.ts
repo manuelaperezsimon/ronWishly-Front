@@ -63,12 +63,14 @@ export const handlers = [
       ctx.json({
         wishes: [
           {
+            id: "1234",
             title: "Viaje a Japón",
             picture: "/wish.png",
             limitDate: new Date(),
             description: "Viajar en primavera",
           },
           {
+            id: "223298242",
             title: "Navidad en NY",
             picture: "/NY.png",
             limitDate: new Date(),
