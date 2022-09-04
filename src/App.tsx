@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import LoginFormPage from "./pages/LoginPage/LoginFormPage";
 import PageNotFoundPage from "./pages/PageNotFoundPage/PageNotFoundPage";
 import RegisterFormPage from "./pages/RegisterPage/RegisterFormPage";
+import WishesListPage from "./pages/WishesListPage/WishesListPage";
 import styledMainTheme from "./styledMainTheme";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<RegisterFormPage />} />
         <Route path="/login" element={<LoginFormPage />} />
         <Route path="/*" element={<PageNotFoundPage />} />
+        <Route path="/wishes" element={<WishesListPage />} />
       </Routes>
     </ThemeProvider>
   );
