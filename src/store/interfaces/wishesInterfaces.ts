@@ -5,4 +5,8 @@ export interface IWish {
   description: string;
 }
 
-export type Wishes = IWish[];
+export interface IdWish extends IWish {
+  id: string;
+}
+
+export type Wishes = IdWish[];

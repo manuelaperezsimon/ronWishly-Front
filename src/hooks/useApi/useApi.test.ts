@@ -17,15 +17,17 @@ jest.mock("../../store/hooks", () => ({
 describe("Given a useApi hook", () => {
   const mockWishList = [
     {
+      id: "1234",
       title: "Viaje a Japón",
       picture: "/wish.png",
-      limitDate: expect.any(Date),
+      limitDate: expect.any(String),
       description: "Viajar en primavera",
     },
     {
+      id: "223298242",
       title: "Navidad en NY",
       picture: "/NY.png",
-      limitDate: expect.any(Date),
+      limitDate: expect.any(String),
       description: "Nieve nieve",
     },
   ];

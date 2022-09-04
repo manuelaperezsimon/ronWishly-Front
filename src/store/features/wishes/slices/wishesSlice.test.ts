@@ -8,12 +8,14 @@ describe("Given a wishes slice", () => {
 
       const fakeListWishes: Wishes = [
         {
+          id: "1234",
           title: "Viajar",
           picture: "/wish.png",
           limitDate: new Date(),
           description: "Viajando por Rivadavia",
         },
         {
+          id: "223298242",
           title: "Paracaidismo",
           picture: "/wish.png",
           limitDate: new Date(),

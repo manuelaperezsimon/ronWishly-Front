@@ -3,7 +3,6 @@ import { useCallback } from "react";
 import { toast } from "react-toastify";
 import { loadAllWishesActionCreator } from "../../store/features/wishes/slices/wishesSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { IWish } from "../../store/interfaces/wishesInterfaces";
 
 const apiURL = process.env.REACT_APP_API_URL;
 
@@ -30,12 +29,11 @@ const useApi = () => {
         headers: { authorization: `Bearer ${token}` },
       });
 
-      const wishesList = data.wishes.map((wish: IWish) => ({
-        ...wish,
-        limitDate: new Date(wish.limitDate),
-      }));
+      const wishesList = data.wishes;
 
       dispatch(loadAllWishesActionCreator(wishesList));
+
+      return wishesList;
     } catch (error) {
       errorModal("Oops, something went wrong :(");
     }
