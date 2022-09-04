@@ -36,8 +36,6 @@ const RegisterForm = (): JSX.Element => {
       if (registerResult) {
         navigate("/login");
       }
-
-      setFormData(initialState);
     }
   };
 
