@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { toast } from "react-toastify";
 import { loadAllWishesActionCreator } from "../../store/features/wishes/slices/wishesSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { Wishes } from "../../store/interfaces/wishesInterfaces";
+import { IWish } from "../../store/interfaces/wishesInterfaces";
 
 const apiURL = process.env.REACT_APP_API_URL;
 
@@ -26,12 +26,16 @@ const useApi = () => {
 
     try {
       loadingModal("Please wait :)");
-      const { data, status } = await axios.get(loadWishesUrl, {
+      const { data } = await axios.get(loadWishesUrl, {
         headers: { authorization: `Bearer ${token}` },
       });
-      if (status === 200) {
-        dispatch(loadAllWishesActionCreator(data));
-      }
+
+      const wishesList = data.wishes.map((wish: IWish) => ({
+        ...wish,
+        limitDate: new Date(wish.limitDate),
+      }));
+
+      dispatch(loadAllWishesActionCreator(wishesList));
     } catch (error) {
       errorModal("Oops, something went wrong :(");
     }
