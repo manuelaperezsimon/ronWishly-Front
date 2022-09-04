@@ -1,13 +1,14 @@
 import { render, screen } from "@testing-library/react";
+
 import Wrapper from "../../utils/Wrapper";
-import RegisterFormPage from "./RegisterFormPage";
+import WishesListPage from "./WishesListPage";
 
-describe("Given the RegiterPage page", () => {
+describe("Given the WishesList page", () => {
   describe("When it's instantiated", () => {
-    test("Then should show 'Register' component", () => {
-      const headingText = "Welcome Onboard!";
+    test("Then should show 'WishesList' component", () => {
+      const headingText = "Here your wishes :)";
 
-      render(<RegisterFormPage />, { wrapper: Wrapper });
+      render(<WishesListPage />, { wrapper: Wrapper });
       const expectedText = screen.getByRole("heading", { name: headingText });
 
       expect(expectedText).toBeInTheDocument();

@@ -3,6 +3,8 @@ import styled from "styled-components";
 const ButtonStyled = styled.div`
   color: ${(props) => props.theme.yellowColor};
   text-decoration: none;
+  display: flex;
+  justify-content: center;
 
   .button {
     &--big {
