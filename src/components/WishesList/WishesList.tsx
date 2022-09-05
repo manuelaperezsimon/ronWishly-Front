@@ -6,10 +6,15 @@ import { RootState } from "../../store/store";
 import WishCard from "../WishCard/WishCard";
 import WishesListStyled from "./WishesListStyled";
 import Button from "../Button/Button";
+import { useNavigate } from "react-router-dom";
+import useUser from "../../hooks/useUser/useUser";
 
 const WishesList = (): JSX.Element => {
   const { getAllWishes } = useApi();
+  const { logOut } = useUser();
   const wishesList = useAppSelector((state: RootState) => state.wishes);
+
+  const navigate = useNavigate();
   const isDisabled = false;
 
   const [date, setDate] = useState("");
@@ -20,6 +25,11 @@ const WishesList = (): JSX.Element => {
 
   const onChangeData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);
+  };
+
+  const logout = () => {
+    logOut();
+    navigate("/login");
   };
 
   if (wishesList.length === 0) {
@@ -34,7 +44,7 @@ const WishesList = (): JSX.Element => {
               width={"80px"}
             />
             <div className="icon__logout">
-              <BiLogOut />
+              <BiLogOut onClick={logout} data-testid="icon-logout" />
             </div>
           </section>
           <div className="container">
@@ -62,7 +72,7 @@ const WishesList = (): JSX.Element => {
           width={"80px"}
         />
         <div className="icon__logout">
-          <BiLogOut />
+          <BiLogOut onClick={logout} data-testid="icon-logout" />
         </div>
       </section>
       <h2 className="list__heading">Here are your wishes :)</h2>
