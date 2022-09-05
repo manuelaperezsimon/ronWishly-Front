@@ -7,8 +7,12 @@ import {
   User,
   UserToken,
 } from "../../store/interfaces/usersInterfaces";
-import { loginUsersActionCreator } from "../../store/features/users/slices/usersSlice";
+import {
+  loginUsersActionCreator,
+  logOutActionCreator,
+} from "../../store/features/users/slices/usersSlice";
 import { useAppDispatch } from "../../store/hooks";
+import { PayloadAction } from "@reduxjs/toolkit";
 
 export const apiURL = process.env.REACT_APP_API_URL;
 
@@ -64,6 +68,11 @@ const useUser = () => {
     }
   };
 
-  return { register, login };
+  const logOut = () => {
+    dispatch<PayloadAction>(logOutActionCreator());
+    localStorage.removeItem("token");
+  };
+
+  return { register, login, logOut };
 };
 export default useUser;
