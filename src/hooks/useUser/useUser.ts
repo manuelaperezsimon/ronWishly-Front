@@ -56,6 +56,7 @@ const useUser = () => {
         const userInfo: User = { ...jwtDecode(token), token };
 
         dispatch(loginUsersActionCreator(userInfo));
+        return true;
       }
     } catch (error: any) {
       errorModal("Oops! Something went wrong, try again...");

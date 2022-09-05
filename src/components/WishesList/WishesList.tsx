@@ -1,5 +1,4 @@
 import { BiLogOut } from "react-icons/bi";
-
 import { useEffect, useState } from "react";
 import useApi from "../../hooks/useApi/useApi";
 import { useAppSelector } from "../../store/hooks";
