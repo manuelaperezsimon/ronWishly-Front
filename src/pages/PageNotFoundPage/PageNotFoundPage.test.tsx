@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import PageNotFound from "../../components/PageNotFound/PageNotFound";
+import PageNotFound from "../../components/NotFound/PageNotFound";
 import Wrapper from "../../utils/Wrapper";
 import PageNotFoundPage from "./PageNotFoundPage";
 
