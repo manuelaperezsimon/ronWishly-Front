@@ -18,7 +18,6 @@ const LoginFormStyled = styled.div`
   }
 
   .logo__picture {
-    width: 130px;
     margin-top: 100px;
     position: relative;
   }

@@ -36,11 +36,13 @@ const LoginForm = (): JSX.Element => {
           src="img/circles.png"
           alt="two circles yellows"
           className="circles__picture"
+          width={"200px"}
         />
         <img
           src="img/brand-logo.png"
           alt="ronWishly logo"
           className="logo__picture"
+          width={"130px"}
         />
         <h2 className="form__heading">Welcome back!</h2>
         <form action="" className="form-login" noValidate>
