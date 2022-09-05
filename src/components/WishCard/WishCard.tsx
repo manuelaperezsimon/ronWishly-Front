@@ -12,9 +12,14 @@ const WishCard = ({ wish: { title, picture } }: WishCardProps): JSX.Element => {
       <WishCardStyled>
         <div className="wish-card__container">
           <div className="icon">
-            <FaRegTrashAlt />
+            <FaRegTrashAlt className="icon--trash" />
           </div>
-          <img className="wish-card__image" src={picture} alt={title} />
+          <img
+            className="wish-card__image"
+            src={picture}
+            alt={title}
+            width={"250px"}
+          />
 
           <h3 className="wish-card__title">{title}</h3>
         </div>
