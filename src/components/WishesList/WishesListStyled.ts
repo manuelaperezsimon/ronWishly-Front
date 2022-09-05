@@ -3,11 +3,18 @@ import styled from "styled-components";
 const WishesListStyled = styled.div`
   margin-top: 50px;
 
+  .circles__picture--big {
+    position: absolute;
+    top: -75px;
+    left: -50px;
+  }
+
   .list__heading {
     display: grid;
     justify-content: center;
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    margin-top: 60px;
   }
 
   .filter {
@@ -26,11 +33,14 @@ const WishesListStyled = styled.div`
     list-style: none;
   }
 
-  .circles__picture {
+  .circles__picture--small {
     position: absolute;
     top: 15px;
     left: 30px;
-    width: 70px;
+  }
+
+  .filter {
+    display: grid;
   }
 
   .filter__input {
@@ -41,10 +51,30 @@ const WishesListStyled = styled.div`
     font-size: 16px;
     font-family: inherit;
     width: 300px;
+    margin-bottom: 20px;
   }
 
-  .button {
-    /* position: fixed; */
+  .container__button {
+    position: fixed;
+    bottom: 0px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .container {
+    margin-top: 200px;
+  }
+
+  .icon__logout {
+    display: grid;
+    margin-right: 40px;
+    justify-content: end;
+    font-size: 30px;
+  }
+
+  .filter__label {
+    margin-bottom: 10px;
+    margin-left: 15px;
   }
 `;
 
