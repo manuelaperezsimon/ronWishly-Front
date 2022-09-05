@@ -1,9 +1,18 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
 import { Wishes } from "../../store/interfaces/wishesInterfaces";
 import Wrapper from "../../utils/Wrapper";
 import WishesList from "./WishesList";
+
+let mockLogout = { logOut: jest.fn() };
+jest.mock("../../hooks/useUser/useUser", () => () => mockLogout);
+
+const mockNavigate = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+}));
 
 describe("Given a WishList component", () => {
   describe("When instantiated without wishes", () => {
@@ -67,6 +76,25 @@ describe("Given a WishList component", () => {
       expect(headingText).toBeInTheDocument();
       expect(buttonCreate).toBeInTheDocument();
       expect(wishesList).toHaveLength(2);
+    });
+  });
+  describe("When click on logOut icon", () => {
+    test("Then it should call the logOut function", async () => {
+      render(<WishesList />, { wrapper: Wrapper });
+
+      const iconLogOut = screen.getByTestId("icon-logout");
+
+      await userEvent.click(iconLogOut);
+
+      expect(iconLogOut).toBeInTheDocument();
+
+      await waitFor(() => {
+        expect(mockLogout.logOut).toHaveBeenCalled();
+      });
+
+      await waitFor(() => {
+        expect(mockNavigate).toHaveBeenCalled();
+      });
     });
   });
 });
