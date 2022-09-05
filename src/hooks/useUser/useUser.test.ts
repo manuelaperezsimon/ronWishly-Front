@@ -6,6 +6,8 @@ import {
   RegisterUserData,
 } from "../../store/interfaces/usersInterfaces";
 import useUser from "./useUser";
+import { act } from "react-dom/test-utils";
+import { logOutActionCreator } from "../../store/features/users/slices/usersSlice";
 
 jest.mock("react-toastify");
 const mockUseDispatch = jest.fn();
@@ -110,6 +112,22 @@ describe("Given a useUser hook", () => {
               position: toast.POSITION.TOP_CENTER,
             }
           );
+        });
+      });
+
+      describe("When logOut function is called", () => {
+        test("Then it should dispatch the log out action creator", async () => {
+          const {
+            result: {
+              current: { logOut },
+            },
+          } = renderHook(useUser, { wrapper: Wrapper });
+
+          act(() => {
+            logOut();
+          });
+
+          expect(mockUseDispatch).toHaveBeenCalledWith(logOutActionCreator());
         });
       });
     });
