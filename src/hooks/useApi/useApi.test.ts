@@ -51,24 +51,6 @@ describe("Given a useApi hook", () => {
       });
     });
 
-    test("Then it shoul send a loading modal", async () => {
-      const {
-        result: {
-          current: { getAllWishes },
-        },
-      } = renderHook(useApi, { wrapper: Wrapper });
-
-      await act(async () => {
-        await getAllWishes();
-      });
-
-      await waitFor(() => {
-        expect(toast.loading).toHaveBeenCalledWith("Please wait :)", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      });
-    });
-
     describe("When invoke getAllWishes function and it not receives a mockWishList", () => {
       test("Then it should send an error message modal", async () => {
         axios.defaults.headers.get["IsTestError"] = true;

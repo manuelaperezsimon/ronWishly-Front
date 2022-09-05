@@ -6,11 +6,6 @@ import { useAppDispatch } from "../../store/hooks";
 
 const apiURL = process.env.REACT_APP_API_URL;
 
-export const loadingModal = (loading: string) =>
-  toast.loading(loading, {
-    position: toast.POSITION.TOP_CENTER,
-  });
-
 export const errorModal = (error: string) =>
   toast.error(error, {
     position: toast.POSITION.TOP_CENTER,
@@ -24,7 +19,6 @@ const useApi = () => {
     const loadWishesUrl = `${apiURL}wishes`;
 
     try {
-      loadingModal("Please wait :)");
       const { data } = await axios.get(loadWishesUrl, {
         headers: { authorization: `Bearer ${token}` },
       });
