@@ -10,12 +10,16 @@ const wishesSlice = createSlice({
     loadAllWishes: (previousWishes, action: PayloadAction<Wishes>) => [
       ...action.payload,
     ],
+    deleteWish: (previousState, action: PayloadAction<string>) =>
+      previousState.filter((wish) => wish.id !== action.payload),
   },
 });
 
 export const { reducer: wishesReducer } = wishesSlice;
 
-export const { loadAllWishes: loadAllWishesActionCreator } =
-  wishesSlice.actions;
+export const {
+  loadAllWishes: loadAllWishesActionCreator,
+  deleteWish: deleteWishActionCreator,
+} = wishesSlice.actions;
 
 export default wishesSlice.reducer;
