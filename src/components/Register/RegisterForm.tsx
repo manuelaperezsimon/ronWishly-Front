@@ -59,12 +59,14 @@ const RegisterForm = (): JSX.Element => {
           className="circles__picture"
           width={"200px"}
         />
-        <img
-          src="img/brand-logo.png"
-          alt="ronWishly logo"
-          className="logo__picture"
-          width={"130px"}
-        />
+        <h1>
+          <img
+            src="img/brand-logo.png"
+            alt="ronWishly logo"
+            className="logo__picture"
+            width={"130px"}
+          />
+        </h1>
         <h2 className="form__heading">Welcome Onboard!</h2>
         <form action="" className="form-register" noValidate>
           <div className="form-register__group">
