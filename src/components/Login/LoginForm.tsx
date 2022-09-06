@@ -1,5 +1,4 @@
 import { SyntheticEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import useUser from "../../hooks/useUser/useUser";
 import Button from "../Button/Button";
@@ -12,7 +11,7 @@ const LoginForm = (): JSX.Element => {
   };
 
   const { login } = useUser();
-  const navigate = useNavigate();
+
   const [formData, setFormData] = useState(initialState);
 
   const onSubmitData = (event: SyntheticEvent) => {
@@ -21,8 +20,6 @@ const LoginForm = (): JSX.Element => {
       userName: formData.userName,
       password: formData.password,
     });
-
-    navigate("/wishes");
   };
 
   const onChangeData = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,12 +39,14 @@ const LoginForm = (): JSX.Element => {
           className="circles__picture"
           width={"200px"}
         />
-        <img
-          src="img/brand-logo.png"
-          alt="ronWishly logo"
-          className="logo__picture"
-          width={"130px"}
-        />
+        <h1>
+          <img
+            src="img/brand-logo.png"
+            alt="ronWishly logo"
+            className="logo__picture"
+            width={"130px"}
+          />
+        </h1>
         <h2 className="form__heading">Welcome back!</h2>
         <form
           action=""

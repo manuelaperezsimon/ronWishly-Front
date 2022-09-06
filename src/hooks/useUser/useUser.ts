@@ -13,6 +13,7 @@ import {
 import { useAppDispatch } from "../../store/hooks";
 import { PayloadAction } from "@reduxjs/toolkit";
 import decodeToken from "../../utils/decodeToken";
+import { useNavigate } from "react-router-dom";
 
 export const apiURL = process.env.REACT_APP_API_URL;
 
@@ -45,6 +46,7 @@ const useUser = () => {
     }
   };
 
+  const navigate = useNavigate();
   const login = async (userData: ProtoUser) => {
     try {
       const {
@@ -59,6 +61,7 @@ const useUser = () => {
 
         dispatch(loginUsersActionCreator(userInfo));
         localStorage.setItem("token", token);
+        navigate("/wishes");
 
         return true;
       }
