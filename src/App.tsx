@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import Protector from "./components/Protector/Protector";
 
 import LoginFormPage from "./pages/LoginPage/LoginFormPage";
 import PageNotFoundPage from "./pages/PageNotFoundPage/PageNotFoundPage";
@@ -14,8 +15,15 @@ function App() {
         <Route path="/" element={<Navigate to="/register" />} />
         <Route path="/register" element={<RegisterFormPage />} />
         <Route path="/login" element={<LoginFormPage />} />
+        <Route
+          path="/wishes"
+          element={
+            <Protector>
+              <WishesListPage />
+            </Protector>
+          }
+        />
         <Route path="/*" element={<PageNotFoundPage />} />
-        <Route path="/wishes" element={<WishesListPage />} />
       </Routes>
     </ThemeProvider>
   );

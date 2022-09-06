@@ -1,7 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Wishes } from "../../store/interfaces/wishesInterfaces";
-import Wrapper from "../../utils/Wrapper";
+import { wrappedRender } from "../../utils/WrappedRender";
+
 import WishesList from "./WishesList";
 
 let mockLogout = { logOut: jest.fn() };
@@ -19,7 +20,7 @@ describe("Given a WishList component", () => {
     test("Then it should show a '¿Don’t you have any wish yet?' text and a button with 'Create wish' as text", async () => {
       const wishesList: Wishes = [];
 
-      render(<WishesList />, { wrapper: Wrapper });
+      wrappedRender(<WishesList />);
 
       const buttonCreate = screen.getByRole("button", {
         name: "Create wish",
@@ -56,7 +57,7 @@ describe("Given a WishList component", () => {
 
       const filterDate = "2022-09-16";
 
-      render(<WishesList />, { wrapper: Wrapper });
+      wrappedRender(<WishesList />);
 
       const buttonCreate = screen.getByRole("button", {
         name: "Create wish",
@@ -80,7 +81,7 @@ describe("Given a WishList component", () => {
   });
   describe("When click on logOut icon", () => {
     test("Then it should call the logOut function", async () => {
-      render(<WishesList />, { wrapper: Wrapper });
+      wrappedRender(<WishesList />);
 
       const iconLogOut = screen.getByTestId("icon-logout");
 
