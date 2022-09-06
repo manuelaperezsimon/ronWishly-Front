@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Provider } from "react-redux";
+import { store } from "../../store/store";
 import Button from "./Button";
 
 describe("Given a component Button", () => {
@@ -29,12 +31,14 @@ describe("Given a component Button", () => {
       const mockAction = jest.fn();
 
       render(
-        <Button
-          buttonText=""
-          classNameTypeButton=""
-          actionOnclick={mockAction}
-          type="submit"
-        ></Button>
+        <Provider store={store}>
+          <Button
+            buttonText=""
+            classNameTypeButton=""
+            actionOnclick={mockAction}
+            type="submit"
+          ></Button>
+        </Provider>
       );
 
       const button = screen.getByRole("button", { name: "" });
