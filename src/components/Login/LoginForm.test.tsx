@@ -1,5 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Provider } from "react-redux";
+import { store } from "../../store/store";
 import Wrapper from "../../utils/Wrapper";
 import LoginForm from "./LoginForm";
 
@@ -16,7 +18,11 @@ jest.mock("react-router-dom", () => ({
 describe("Given a Login Component", () => {
   describe("When instantiated", () => {
     test("Then it should display a form with a title, two inputs, a button and a link", () => {
-      render(<LoginForm />, { wrapper: Wrapper });
+      render(
+        <Provider store={store}>
+          <LoginForm />
+        </Provider>
+      );
 
       const elementsInScreen = [
         screen.getByAltText("two circles yellows"),
@@ -37,7 +43,11 @@ describe("Given a Login Component", () => {
         const usernameFake = "rodrigo";
         const passwordFake = "098765";
 
-        render(<LoginForm />, { wrapper: Wrapper });
+        render(
+          <Provider store={store}>
+            <LoginForm />
+          </Provider>
+        );
 
         const formInputs = {
           userName: screen.getByLabelText("User Name:") as HTMLInputElement,
@@ -58,7 +68,11 @@ describe("Given a Login Component", () => {
       test("Then it should call the mockLogin with the data user", async () => {
         const usernameFake = "rodrigo";
         const passwordFake = "098765";
-        render(<LoginForm />);
+        render(
+          <Provider store={store}>
+            <LoginForm />
+          </Provider>
+        );
         const form = {
           userName: screen.getByLabelText("User Name:") as HTMLInputElement,
           password: screen.getByLabelText("Password:") as HTMLInputElement,

@@ -1,10 +1,14 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import { Wishes } from "../../store/interfaces/wishesInterfaces";
-import Wrapper from "../../utils/Wrapper";
+import { store } from "../../store/store";
+
 import WishesList from "./WishesList";
 
 let mockLogout = { logOut: jest.fn() };
+
 jest.mock("../../hooks/useUser/useUser", () => () => mockLogout);
 
 const mockNavigate = jest.fn();
@@ -19,7 +23,13 @@ describe("Given a WishList component", () => {
     test("Then it should show a '¿Don’t you have any wish yet?' text and a button with 'Create wish' as text", async () => {
       const wishesList: Wishes = [];
 
-      render(<WishesList />, { wrapper: Wrapper });
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <WishesList />
+          </BrowserRouter>
+        </Provider>
+      );
 
       const buttonCreate = screen.getByRole("button", {
         name: "Create wish",
@@ -56,7 +66,13 @@ describe("Given a WishList component", () => {
 
       const filterDate = "2022-09-16";
 
-      render(<WishesList />, { wrapper: Wrapper });
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <WishesList />
+          </BrowserRouter>
+        </Provider>
+      );
 
       const buttonCreate = screen.getByRole("button", {
         name: "Create wish",
@@ -80,7 +96,13 @@ describe("Given a WishList component", () => {
   });
   describe("When click on logOut icon", () => {
     test("Then it should call the logOut function", async () => {
-      render(<WishesList />, { wrapper: Wrapper });
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <WishesList />
+          </BrowserRouter>
+        </Provider>
+      );
 
       const iconLogOut = screen.getByTestId("icon-logout");
 
@@ -88,13 +110,9 @@ describe("Given a WishList component", () => {
 
       expect(iconLogOut).toBeInTheDocument();
 
-      await waitFor(() => {
-        expect(mockLogout.logOut).toHaveBeenCalled();
-      });
+      expect(mockLogout.logOut).toHaveBeenCalled();
 
-      await waitFor(() => {
-        expect(mockNavigate).toHaveBeenCalled();
-      });
+      expect(mockNavigate).toHaveBeenCalled();
     });
   });
 });

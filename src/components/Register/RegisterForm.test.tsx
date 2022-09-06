@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Wrapper from "../../utils/Wrapper";
+import { Provider } from "react-redux";
+import { store } from "../../store/store";
 import RegisterForm from "./RegisterForm";
 
 const mockUser = jest.fn();
@@ -18,7 +19,11 @@ jest.mock("../../hooks/useUser/useUser", () => () => ({
 describe("Given a form component", () => {
   describe("When instantiated", () => {
     test("Then it should display a form with a title, three inputs, a button and a link", () => {
-      render(<RegisterForm />, { wrapper: Wrapper });
+      render(
+        <Provider store={store}>
+          <RegisterForm />
+        </Provider>
+      );
 
       const elementsInScreen = [
         screen.getByAltText("ronWishly logo"),
@@ -41,7 +46,11 @@ describe("Given a form component", () => {
       const filledInput2 = "1234";
       const filledInput3 = "1234";
 
-      render(<RegisterForm />);
+      render(
+        <Provider store={store}>
+          <RegisterForm />
+        </Provider>
+      );
 
       const usernameInput = screen.getByLabelText(
         "User Name:"
@@ -70,7 +79,11 @@ describe("Given a form component", () => {
       const passwordInputFilled = "12345";
       const repeatInputFilled = "12345";
 
-      render(<RegisterForm />);
+      render(
+        <Provider store={store}>
+          <RegisterForm />
+        </Provider>
+      );
 
       const usernameInput = screen.getByLabelText(
         "User Name:"
@@ -103,7 +116,11 @@ describe("Given a form component", () => {
       const passwordInputFilled = "12345";
       const repeatInputFilled = "12345";
 
-      render(<RegisterForm />);
+      render(
+        <Provider store={store}>
+          <RegisterForm />
+        </Provider>
+      );
 
       const usernameInput = screen.getByLabelText(
         "User Name:"
@@ -134,7 +151,11 @@ describe("Given a form component", () => {
         const passwordInputFilled = "12345";
         const repeatInputFilled = "12345";
 
-        render(<RegisterForm />);
+        render(
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        );
 
         const usernameInput = screen.getByLabelText(
           "User Name:"
@@ -165,7 +186,11 @@ describe("Given a form component", () => {
         const fakePassword = "holaquetal";
         const repeatFakePassword = "chauadeu";
 
-        render(<RegisterForm />);
+        render(
+          <Provider store={store}>
+            <RegisterForm />
+          </Provider>
+        );
 
         const form = {
           userName: screen.getByLabelText("User Name:") as HTMLInputElement,
