@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import useUser from "../../hooks/useUser/useUser";
 import Button from "../Button/Button";
@@ -11,6 +12,7 @@ const LoginForm = (): JSX.Element => {
   };
 
   const { login } = useUser();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(initialState);
 
   const onSubmitData = (event: SyntheticEvent) => {
@@ -19,6 +21,8 @@ const LoginForm = (): JSX.Element => {
       userName: formData.userName,
       password: formData.password,
     });
+
+    navigate("/wishes");
   };
 
   const onChangeData = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +34,7 @@ const LoginForm = (): JSX.Element => {
 
   return (
     <>
-      <LoginFormStyled className="form" onSubmit={onSubmitData}>
+      <LoginFormStyled className="form">
         <ToastContainer />
         <img
           src="img/circles.png"
@@ -45,7 +49,12 @@ const LoginForm = (): JSX.Element => {
           width={"130px"}
         />
         <h2 className="form__heading">Welcome back!</h2>
-        <form action="" className="form-login" noValidate>
+        <form
+          action=""
+          className="form-login"
+          noValidate
+          onSubmit={onSubmitData}
+        >
           <div className="form-login__group">
             <label htmlFor="userName" className="form__label">
               User Name:

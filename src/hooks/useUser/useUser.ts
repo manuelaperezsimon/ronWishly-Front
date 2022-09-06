@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-import jwtDecode from "jwt-decode";
 import { toast } from "react-toastify";
 import {
   ProtoUser,
@@ -13,6 +12,7 @@ import {
 } from "../../store/features/users/slices/usersSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { PayloadAction } from "@reduxjs/toolkit";
+import decodeToken from "../../utils/decodeToken";
 
 export const apiURL = process.env.REACT_APP_API_URL;
 
@@ -55,11 +55,11 @@ const useUser = () => {
       );
 
       if (token) {
-        localStorage.setItem("token", token);
-
-        const userInfo: User = { ...jwtDecode(token), token };
+        const userInfo: User = decodeToken(token);
 
         dispatch(loginUsersActionCreator(userInfo));
+        localStorage.setItem("token", token);
+
         return true;
       }
     } catch (error: any) {
