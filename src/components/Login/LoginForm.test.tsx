@@ -6,6 +6,13 @@ import LoginForm from "./LoginForm";
 let mockLogin = { login: jest.fn() };
 jest.mock("../../hooks/useUser/useUser", () => () => mockLogin);
 
+const mockNavigate = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+}));
+
 describe("Given a Login Component", () => {
   describe("When instantiated", () => {
     test("Then it should display a form with a title, two inputs, a button and a link", () => {
