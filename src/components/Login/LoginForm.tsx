@@ -32,7 +32,6 @@ const LoginForm = (): JSX.Element => {
   return (
     <>
       <LoginFormStyled className="form">
-        <ToastContainer />
         <img
           src="img/circles.png"
           alt="two circles yellows"

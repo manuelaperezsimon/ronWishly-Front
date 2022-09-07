@@ -52,7 +52,6 @@ const RegisterForm = (): JSX.Element => {
   return (
     <>
       <RegisterStyled className="form" onSubmit={onSubmitData}>
-        <ToastContainer />
         <img
           src="img/circles.png"
           alt="two circles yellow"
