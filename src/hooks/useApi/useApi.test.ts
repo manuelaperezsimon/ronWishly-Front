@@ -2,7 +2,10 @@ import { renderHook, waitFor } from "@testing-library/react";
 import axios from "axios";
 import { act } from "react-dom/test-utils";
 import { toast } from "react-toastify";
-import { loadAllWishesActionCreator } from "../../store/features/wishes/slices/wishesSlice";
+import {
+  deleteWishActionCreator,
+  loadAllWishesActionCreator,
+} from "../../store/features/wishes/slices/wishesSlice";
 import Wrapper from "../../utils/Wrapper";
 import useApi from "./useApi";
 
@@ -71,6 +74,56 @@ describe("Given a useApi hook", () => {
         );
 
         delete axios.defaults.headers.get["IsTestError"];
+      });
+    });
+
+    describe("When invoke deleteWish function with a valid wish id", () => {
+      const {
+        result: {
+          current: { deleteWish },
+        },
+      } = renderHook(useApi);
+
+      const idWish: string = "232464fe42536dd232";
+
+      test("Then it should call the dispatch with the delete action creator with the id", async () => {
+        await act(async () => {
+          await deleteWish(idWish);
+        });
+
+        expect(toast.success).toHaveBeenCalledWith(
+          "Great! The wish has been deleted!",
+          {
+            position: toast.POSITION.TOP_CENTER,
+          }
+        );
+
+        await waitFor(() => {
+          expect(mockUseDispatch).toHaveBeenCalledWith(
+            deleteWishActionCreator(idWish)
+          );
+        });
+      });
+
+      describe("When called with an invalid project id", () => {
+        test("Then it should not dispatch the delete action", async () => {
+          await act(async () => {
+            await deleteWish("wrongId");
+          });
+
+          expect(toast.error).toHaveBeenCalledWith(
+            "Oops, something went wrong :(",
+            {
+              position: toast.POSITION.TOP_CENTER,
+            }
+          );
+
+          await waitFor(() => {
+            expect(mockUseDispatch).not.toHaveBeenCalledWith(
+              deleteWishActionCreator(idWish)
+            );
+          });
+        });
       });
     });
   });
