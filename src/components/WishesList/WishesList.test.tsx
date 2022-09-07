@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { Wishes } from "../../store/interfaces/wishesInterfaces";
 import { store } from "../../store/store";
-
 import WishesList from "./WishesList";
 
 let mockLogout = { logOut: jest.fn() };
