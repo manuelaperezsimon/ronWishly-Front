@@ -1,5 +1,7 @@
 import { rest } from "msw";
 
+const idWish: string = "232464fe42536dd232";
+
 export const handlers = [
   rest.post(
     `${process.env.REACT_APP_API_URL}users/register`,
@@ -80,4 +82,25 @@ export const handlers = [
       })
     );
   }),
+
+  rest.delete(
+    `${process.env.REACT_APP_API_URL}wishes/${idWish}`,
+    async (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          wishDelete: {
+            id: idWish,
+          },
+        })
+      );
+    }
+  ),
+
+  rest.delete(
+    `${process.env.REACT_APP_API_URL}wishes/wrongId`,
+    async (req, res, ctx) => {
+      return res(ctx.status(404), ctx.json({ error: "Wish not found" }));
+    }
+  ),
 ];

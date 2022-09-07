@@ -1,15 +1,23 @@
 import axios from "axios";
 import { useCallback } from "react";
 import { toast } from "react-toastify";
-import { loadAllWishesActionCreator } from "../../store/features/wishes/slices/wishesSlice";
+import {
+  deleteWishActionCreator,
+  loadAllWishesActionCreator,
+} from "../../store/features/wishes/slices/wishesSlice";
 import { useAppDispatch } from "../../store/hooks";
 
-const apiURL = process.env.REACT_APP_API_URL;
+export const successModal = (message: string) =>
+  toast.success(message, {
+    position: toast.POSITION.TOP_CENTER,
+  });
 
 export const errorModal = (error: string) =>
   toast.error(error, {
     position: toast.POSITION.TOP_CENTER,
   });
+
+const apiURL = process.env.REACT_APP_API_URL;
 
 const useApi = () => {
   const dispatch = useAppDispatch();
@@ -33,8 +41,30 @@ const useApi = () => {
     }
   }, [dispatch]);
 
+  const deleteWish = useCallback(
+    async (wishId: string) => {
+      const token = localStorage.getItem("token");
+      const deleteWishesUrl = `${apiURL}wishes/`;
+
+      try {
+        await axios.delete(`${deleteWishesUrl}${wishId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        dispatch(deleteWishActionCreator(wishId));
+        successModal("Great! The wish has been deleted!");
+      } catch (error) {
+        errorModal("Oops, something went wrong :(");
+      }
+    },
+    [dispatch]
+  );
+
   return {
     getAllWishes,
+    deleteWish,
   };
 };
 
