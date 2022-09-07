@@ -2,7 +2,6 @@ import { SyntheticEvent, useState } from "react";
 import useUser from "../../hooks/useUser/useUser";
 import Button from "../Button/Button";
 import { RegisterStyled } from "./RegisterFormStyled";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
@@ -52,7 +51,6 @@ const RegisterForm = (): JSX.Element => {
   return (
     <>
       <RegisterStyled className="form" onSubmit={onSubmitData}>
-        <ToastContainer />
         <img
           src="img/circles.png"
           alt="two circles yellow"

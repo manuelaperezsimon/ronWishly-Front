@@ -37,12 +37,14 @@ const WishesList = (): JSX.Element => {
       <>
         <WishesListStyled>
           <section className="header__container">
-            <img
-              src="img/circles.png"
-              alt="two circles yellow"
-              className="circles__picture circles__picture--big"
-              width={"80px"}
-            />
+            <h1>
+              <img
+                src="img/circles.png"
+                alt="two circles yellow"
+                className="circles__picture circles__picture--big"
+                width={"80px"}
+              />
+            </h1>
             <div className="icon__logout">
               <BiLogOut onClick={logout} data-testid="icon-logout" />
             </div>
