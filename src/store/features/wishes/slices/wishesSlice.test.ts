@@ -2,6 +2,7 @@ import { IdWish, Wishes } from "../../../interfaces/wishesInterfaces";
 import wishesSlice, {
   deleteWishActionCreator,
   loadAllWishesActionCreator,
+  wishesReducer,
 } from "./wishesSlice";
 
 describe("Given a wishes slice", () => {
@@ -37,16 +38,15 @@ describe("Given a wishes slice", () => {
 });
 
 describe("Given a deleteWishActionCreator function", () => {
+  const fakeWish: IdWish = {
+    id: "1234",
+    title: "Viajar",
+    picture: "/wish.png",
+    limitDate: new Date(),
+    description: "Viajando por Rivadavia",
+  };
   describe("When called with a wish id as a payload", () => {
     test("Then it should return an action with a type 'wishes/deleteWish' and said id as payload", () => {
-      const fakeWish: IdWish = {
-        id: "1234",
-        title: "Viajar",
-        picture: "/wish.png",
-        limitDate: new Date(),
-        description: "Viajando por Rivadavia",
-      };
-
       const actionType = "wishes/deleteWish";
       const expectedAction = {
         type: actionType,
@@ -56,6 +56,20 @@ describe("Given a deleteWishActionCreator function", () => {
       const action = deleteWishActionCreator(expectedAction.payload);
 
       expect(action).toStrictEqual(expectedAction);
+    });
+  });
+
+  describe("When called with a deleteWish action", () => {
+    test("Then it should remove the wish passed in the action from the state", () => {
+      const initialState = [fakeWish] as Wishes;
+
+      const expectedResult = [] as Wishes;
+
+      const action = deleteWishActionCreator(fakeWish.id);
+
+      const result = wishesReducer(initialState, action);
+
+      expect(result).toStrictEqual(expectedResult);
     });
   });
 });
