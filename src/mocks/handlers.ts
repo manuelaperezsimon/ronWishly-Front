@@ -103,4 +103,29 @@ export const handlers = [
       return res(ctx.status(404), ctx.json({ error: "Wish not found" }));
     }
   ),
+
+  rest.get(
+    `${process.env.REACT_APP_API_URL}wishes/${idWish}`,
+    (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          wish: {
+            id: idWish,
+            title: "Navidad en NY",
+            picture: "/NY.png",
+            limitDate: "2022-09-07T19:12:29.422Z",
+            description: "Nieve nieve",
+          },
+        })
+      );
+    }
+  ),
+
+  rest.get(
+    `${process.env.REACT_APP_API_URL}wishes/wrongId`,
+    (_req, res, ctx) => {
+      return res(ctx.status(404), ctx.json({ error: "Something went wrong" }));
+    }
+  ),
 ];

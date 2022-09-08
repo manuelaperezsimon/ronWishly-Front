@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useCallback } from "react";
+
 import { toast } from "react-toastify";
 import {
   deleteWishActionCreator,
@@ -62,9 +63,22 @@ const useApi = () => {
     [dispatch]
   );
 
+  const getWishById = useCallback(async (idWish: string) => {
+    const getWishUrl = `${apiURL}wishes/`;
+    try {
+      const {
+        data: { wish },
+      } = await axios.get(`${getWishUrl}${idWish}`);
+      return wish;
+    } catch (error) {
+      errorModal("Cannot show details from this wish :(");
+    }
+  }, []);
+
   return {
     getAllWishes,
     deleteWish,
+    getWishById,
   };
 };
 
