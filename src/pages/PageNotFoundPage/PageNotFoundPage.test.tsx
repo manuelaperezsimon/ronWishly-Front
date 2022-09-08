@@ -7,7 +7,7 @@ describe("Given the PageNotFound page", () => {
   describe("When it's instantiated", () => {
     test("Then should show 'PageNotFound' component", () => {
       const textNotFound = "404: PAGE NOT FOUND";
-      const textLink = "Go to Sign In!";
+      const textLink = "Go to wishes!";
 
       render(<PageNotFoundPage />, { wrapper: Wrapper });
 

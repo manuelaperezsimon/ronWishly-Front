@@ -6,7 +6,7 @@ const PageNotFound = (): JSX.Element => {
       <div className="circles__container">
         <img
           className="logo__picture"
-          src="img/circles-red.png"
+          src="/img/circles-red.png"
           alt="two circles red"
         />
       </div>
