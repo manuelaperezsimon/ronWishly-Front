@@ -1,5 +1,9 @@
 import { IdWish } from "../../store/interfaces/wishesInterfaces";
 import Button from "../Button/Button";
+import { IoIosClose } from "react-icons/io";
+import WishDetailStyled from "./WishDetailStyled";
+import useApi from "../../hooks/useApi/useApi";
+import { useNavigate } from "react-router-dom";
 
 interface WishDetailProps {
   wish: IdWish;
@@ -7,37 +11,75 @@ interface WishDetailProps {
 
 const WishDetail = ({ wish }: WishDetailProps): JSX.Element => {
   let isDisable = false;
+
+  const { deleteWish } = useApi();
+
+  const wishDelete = () => {
+    deleteWish(wish.id);
+    navigate("/wishes");
+  };
+
+  const navigate = useNavigate();
+
+  const navigateToWishList = () => {
+    navigate("/wishes");
+  };
+
   return (
     <>
-      <div className="wish-detail__image">
-        <img
-          className="wish-detail__image"
-          src={wish.picture}
-          alt={wish.title}
-          width={"250px"}
-        />
-      </div>
-      <div className="wish-detail__container">
-        <h3 className="wish-detail__title">{wish.title}</h3>
-        <span className="wish-detail__limit-date">
-          Limit date: {wish.limitDate.toDateString()}
-        </span>
-        <p className="wish-detail__description">{wish.description}</p>
-      </div>
-      <Button
-        buttonText="Modify"
-        type="button"
-        classNameTypeButton="button--big"
-        actionOnclick={() => {}}
-        isDisable={isDisable}
-      />
-      <Button
-        buttonText="Delete"
-        type="button"
-        classNameTypeButton="button--big"
-        actionOnclick={() => {}}
-        isDisable={isDisable}
-      />
+      <WishDetailStyled>
+        <section className="header-container">
+          <h1>
+            <img
+              src="/img/circles.png"
+              alt="two circles yellow"
+              className="circles__picture circles__picture--big"
+              width={"80px"}
+            />
+          </h1>
+          <IoIosClose
+            className="icon--close"
+            data-testid="icon-close"
+            onClick={navigateToWishList}
+          />
+        </section>
+
+        <section className="wish-detail__section">
+          <div className="wish-detail-container__image">
+            <img
+              className="wish-detail__image"
+              src={wish.picture}
+              alt={wish.title}
+              width={"250px"}
+            />
+          </div>
+          <div className="wish-detail__container">
+            <h3 className="wish-detail__title">{wish.title}</h3>
+            <span className="wish-detail__limit-date">
+              Limit date: 20/12/2032
+            </span>
+            <span className="wish-detail__description">
+              {wish.description}{" "}
+            </span>
+          </div>
+          <div className="buttons">
+            <Button
+              buttonText="Modify"
+              type="button"
+              classNameTypeButton="button--small"
+              actionOnclick={() => {}}
+              isDisable={isDisable}
+            />
+            <Button
+              buttonText="Delete"
+              type="button"
+              classNameTypeButton="button--small"
+              actionOnclick={wishDelete}
+              isDisable={isDisable}
+            />
+          </div>
+        </section>
+      </WishDetailStyled>
     </>
   );
 };
