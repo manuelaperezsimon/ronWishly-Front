@@ -124,6 +124,46 @@ describe("Given a useApi hook", () => {
             );
           });
         });
+
+        describe("When it's invoked with getOneGameById with the correct id", () => {
+          test("Then it should return a wish with this id", async () => {
+            const idWish = "232464fe42536dd232";
+            const mockWish = {
+              id: idWish,
+              title: "Navidad en NY",
+              picture: "/NY.png",
+              limitDate: "2022-09-07T19:12:29.422Z",
+              description: "Nieve nieve",
+            };
+
+            const {
+              result: {
+                current: { getWishById },
+              },
+            } = renderHook(useApi, { wrapper: Wrapper });
+
+            const wish = await getWishById(idWish);
+
+            await expect(wish).toStrictEqual(mockWish);
+          });
+
+          test("And if can't return a wish, it should call the error modal", async () => {
+            const {
+              result: {
+                current: { getWishById },
+              },
+            } = renderHook(useApi, { wrapper: Wrapper });
+
+            await getWishById("1234");
+
+            expect(toast.error).toHaveBeenCalledWith(
+              "Cannot show details from this wish :(",
+              {
+                position: toast.POSITION.TOP_CENTER,
+              }
+            );
+          });
+        });
       });
     });
   });
