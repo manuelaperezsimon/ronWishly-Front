@@ -25,6 +25,12 @@ const WishDetail = ({ wish }: WishDetailProps): JSX.Element => {
     navigate("/wishes");
   };
 
+  const objectLimitDate = new Date(wish.limitDate);
+
+  const limitDate = `${objectLimitDate.getDate()}/${
+    objectLimitDate.getMonth() + 1
+  }/${objectLimitDate.getFullYear()}`;
+
   return (
     <>
       <WishDetailStyled>
@@ -56,7 +62,7 @@ const WishDetail = ({ wish }: WishDetailProps): JSX.Element => {
           <div className="wish-detail__container">
             <h3 className="wish-detail__title">{wish.title}</h3>
             <span className="wish-detail__limit-date">
-              Limit date: 20/12/2032
+              <>Limit date: {limitDate}</>
             </span>
             <span className="wish-detail__description">
               {wish.description}{" "}

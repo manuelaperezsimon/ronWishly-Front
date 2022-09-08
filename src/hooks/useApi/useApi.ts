@@ -64,11 +64,17 @@ const useApi = () => {
   );
 
   const getWishById = useCallback(async (idWish: string) => {
+    const token = localStorage.getItem("token");
     const getWishUrl = `${apiURL}wishes/`;
+
     try {
       const {
         data: { wish },
-      } = await axios.get(`${getWishUrl}${idWish}`);
+      } = await axios.get(`${getWishUrl}${idWish}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return wish;
     } catch (error) {
       errorModal("Cannot show details from this wish :(");
