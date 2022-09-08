@@ -8,8 +8,8 @@ const PageNotFoundPage = (): JSX.Element => {
     <>
       <PageNotFound />
       <LinkStyledPageNotFound className="not-found-text">
-        <Link to={"/login"}>
-          <ButtonStyled className="button-link">Go to Sign In!</ButtonStyled>
+        <Link to={"/wishes"}>
+          <ButtonStyled className="button-link">Go to wishes!</ButtonStyled>
         </Link>
       </LinkStyledPageNotFound>
     </>
