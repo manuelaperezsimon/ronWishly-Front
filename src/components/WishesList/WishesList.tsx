@@ -8,6 +8,7 @@ import WishesListStyled from "./WishesListStyled";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
+import { NavLink } from "react-router-dom";
 
 const WishesList = (): JSX.Element => {
   const { getAllWishes } = useApi();
@@ -69,7 +70,7 @@ const WishesList = (): JSX.Element => {
       <section className="header__container">
         <h1>
           <img
-            src="img/circles.png"
+            src="/img/circles.png"
             alt="two circles yellow"
             className="circles__picture circles__picture--small"
             width={"80px"}
@@ -98,7 +99,12 @@ const WishesList = (): JSX.Element => {
       <ul className="list-wishes">
         {wishesList.map((wish) => (
           <li key={wish.title} className="list__item">
-            <WishCard wish={wish} />
+            <NavLink
+              className="wishcard__details"
+              to={`/wishes/details/${wish.id}`}
+            >
+              <WishCard wish={wish} />
+            </NavLink>
           </li>
         ))}
       </ul>

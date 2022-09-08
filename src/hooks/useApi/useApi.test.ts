@@ -125,7 +125,7 @@ describe("Given a useApi hook", () => {
           });
         });
 
-        describe("When it's invoked with getOneGameById with the correct id", () => {
+        describe("When it's invoked with getWishById with the correct id", () => {
           test("Then it should return a wish with this id", async () => {
             const idWish = "232464fe42536dd232";
             const mockWish = {
@@ -154,7 +154,7 @@ describe("Given a useApi hook", () => {
               },
             } = renderHook(useApi, { wrapper: Wrapper });
 
-            await getWishById("1234");
+            await getWishById("wrongId");
 
             expect(toast.error).toHaveBeenCalledWith(
               "Cannot show details from this wish :(",
