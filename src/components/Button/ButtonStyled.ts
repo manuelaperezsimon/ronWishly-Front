@@ -17,6 +17,17 @@ const ButtonStyled = styled.div`
       font-size: 20px;
       font-family: "Poppins", sans-serif;
     }
+
+    &--small {
+      height: 70px;
+      width: 150px;
+      left: 33px;
+      top: 611px;
+      border-radius: 10px;
+      background-color: ${(props) => props.theme.yellowColor};
+      font-size: 20px;
+      font-family: "Poppins", sans-serif;
+    }
   }
 `;
 
