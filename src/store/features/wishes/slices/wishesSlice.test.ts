@@ -1,5 +1,6 @@
 import { IdWish, Wishes } from "../../../interfaces/wishesInterfaces";
 import wishesSlice, {
+  createNewWishActionCreator,
   deleteWishActionCreator,
   loadAllWishesActionCreator,
   wishesReducer,
@@ -68,6 +69,28 @@ describe("Given a deleteWishActionCreator function", () => {
       const action = deleteWishActionCreator(fakeWish.id);
 
       const result = wishesReducer(initialState, action);
+
+      expect(result).toStrictEqual(expectedResult);
+    });
+  });
+
+  describe("When called with a createNewWish action", () => {
+    test("Then it should return an action with a type 'wishes/createNewWish' and said wish as payload", () => {
+      const initialState = [] as Wishes;
+
+      const wishFake: IdWish = {
+        id: "113224",
+        title: "Holis",
+        picture: "/tjth.png",
+        limitDate: new Date(),
+        description: "viajar",
+      };
+
+      const expectedResult = [wishFake] as Wishes;
+
+      const actionFake = createNewWishActionCreator(wishFake);
+
+      const result = wishesReducer(initialState, actionFake);
 
       expect(result).toStrictEqual(expectedResult);
     });
