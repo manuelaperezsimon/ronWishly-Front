@@ -98,7 +98,7 @@ const WishesList = (): JSX.Element => {
       </div>
       <ul className="list-wishes">
         {wishesList.map((wish) => (
-          <li key={wish.title} className="list__item">
+          <li key={wish.id} className="list__item">
             <NavLink
               className="wishcard__details"
               to={`/wishes/details/${wish.id}`}
