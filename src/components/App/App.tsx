@@ -7,7 +7,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import Protector from "../Protector/Protector";
 import ProtectorReverse from "../ProtectorReverse/ProtectorReverse";
 import LoginFormPage from "../../pages/LoginPage/LoginFormPage";
 import PageNotFoundPage from "../../pages/PageNotFoundPage/PageNotFoundPage";
@@ -17,6 +16,8 @@ import { loginUsersActionCreator } from "../../store/features/users/slices/users
 import { useAppDispatch } from "../../store/hooks";
 import styledMainTheme from "../../styledMainTheme";
 import decodeToken from "../../utils/decodeToken";
+import WishDetailsPage from "../../pages/WishDetailPage/WishDetailPage";
+import WishForm from "../WishForm/WishForm";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -48,12 +49,14 @@ function App() {
         <Route
           path="/wishes"
           element={
-            <Protector>
+            <>
               <WishesListPage />
-            </Protector>
+            </>
           }
         />
+        <Route path="/wishes/details/:id" element={<WishDetailsPage />} />
         <Route path="/*" element={<PageNotFoundPage />} />
+        <Route path="/create" element={<WishForm />} />
       </Routes>
     </ThemeProvider>
   );
