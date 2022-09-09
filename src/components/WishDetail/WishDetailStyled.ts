@@ -65,6 +65,8 @@ const WishDetailStyled = styled.div`
 
   .wish-detail__description {
     margin: 25px 0px;
+    text-align: center;
+    padding: 0 5px;
   }
 `;
 
