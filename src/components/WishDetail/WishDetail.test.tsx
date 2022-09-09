@@ -28,7 +28,7 @@ describe("Given a WishDetail component", () => {
       render(
         <Provider store={store}>
           <BrowserRouter>
-            <WishDetail key={wish.title} wish={wish} />
+            <WishDetail key={wish.id} wish={wish} />
           </BrowserRouter>
         </Provider>
       );
@@ -56,7 +56,7 @@ describe("Given a WishDetail component", () => {
       render(
         <Provider store={store}>
           <BrowserRouter>
-            <WishDetail key={wish.title} wish={wish} />
+            <WishDetail key={wish.id} wish={wish} />
           </BrowserRouter>
         </Provider>
       );
@@ -78,7 +78,7 @@ describe("Given a WishDetail component", () => {
       render(
         <Provider store={store}>
           <BrowserRouter>
-            <WishDetail key={wish.title} wish={wish} />
+            <WishDetail key={wish.id} wish={wish} />
           </BrowserRouter>
         </Provider>
       );

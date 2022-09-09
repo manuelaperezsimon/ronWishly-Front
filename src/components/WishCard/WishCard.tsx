@@ -26,14 +26,13 @@ const WishCard = ({
               data-testid="icon-trash"
               onClick={wishDelete}
             />
-          </div>
+          </div>{" "}
           <img
             className="wish-card__image"
             src={picture}
             alt={title}
             width={"250px"}
           />
-
           <h3 className="wish-card__title">{title}</h3>
         </div>
       </WishCardStyled>
