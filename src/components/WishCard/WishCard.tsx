@@ -1,3 +1,4 @@
+import { SyntheticEvent } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import useApi from "../../hooks/useApi/useApi";
 import { IdWish } from "../../store/interfaces/wishesInterfaces";
@@ -12,7 +13,8 @@ const WishCard = ({
 }: WishCardProps): JSX.Element => {
   const { deleteWish } = useApi();
 
-  const wishDelete = () => {
+  const wishDelete = (event: SyntheticEvent) => {
+    event.preventDefault();
     deleteWish(id);
   };
 

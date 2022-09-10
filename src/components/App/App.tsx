@@ -17,6 +17,7 @@ import { useAppDispatch } from "../../store/hooks";
 import styledMainTheme from "../../styledMainTheme";
 import decodeToken from "../../utils/decodeToken";
 import WishDetailsPage from "../../pages/WishDetailPage/WishDetailPage";
+import WishFormPage from "../../pages/WishFormPage/WishFormPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -59,7 +60,15 @@ function App() {
           path="/create"
           element={
             <>
-              <RegisterFormPage />
+              <WishFormPage />
+            </>
+          }
+        />
+        <Route
+          path="/modify/:id"
+          element={
+            <>
+              <WishFormPage />
             </>
           }
         />
