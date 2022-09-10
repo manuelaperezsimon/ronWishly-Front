@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
@@ -93,6 +93,29 @@ describe("Given a WishList component", () => {
       expect(wishesList).toHaveLength(2);
     });
   });
+
+  describe("When click on Create wish button", () => {
+    test("Then it should call the createWish function", async () => {
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <WishesList />
+          </BrowserRouter>
+        </Provider>
+      );
+
+      const buttonCreate = screen.getByRole("button", {
+        name: "Create wish",
+      });
+
+      await userEvent.click(buttonCreate);
+
+      await waitFor(() => {
+        expect(mockNavigate).toHaveBeenCalled();
+      });
+    });
+  });
+
   describe("When click on logOut icon", () => {
     test("Then it should call the logOut function", async () => {
       render(

@@ -33,6 +33,10 @@ const WishesList = (): JSX.Element => {
     navigate("/login");
   };
 
+  const createWish = () => {
+    navigate("/create");
+  };
+
   if (wishesList.length === 0) {
     return (
       <>
@@ -54,9 +58,9 @@ const WishesList = (): JSX.Element => {
             <h2 className="list__heading">Don't you have any wish yet?</h2>
             <Button
               buttonText="Create wish"
-              type="submit"
+              type="button"
               classNameTypeButton="button button--big"
-              actionOnclick={() => {}}
+              actionOnclick={createWish}
               isDisable={isDisabled}
             />
           </div>
@@ -111,9 +115,9 @@ const WishesList = (): JSX.Element => {
       <div className="container__button">
         <Button
           buttonText="Create wish"
-          type="submit"
+          type="button"
           classNameTypeButton="button button--big"
-          actionOnclick={() => {}}
+          actionOnclick={createWish}
           isDisable={isDisabled}
         />
       </div>
