@@ -55,6 +55,14 @@ function App() {
         />
         <Route path="/wishes/details/:id" element={<WishDetailsPage />} />
         <Route path="/*" element={<PageNotFoundPage />} />
+        <Route
+          path="/create"
+          element={
+            <>
+              <RegisterFormPage />
+            </>
+          }
+        />
       </Routes>
     </ThemeProvider>
   );
