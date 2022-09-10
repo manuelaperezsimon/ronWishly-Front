@@ -165,6 +165,61 @@ describe("Given a useApi hook", () => {
           });
         });
       });
+      describe("When invoke createWish function with a new wish", () => {
+        test("Then it should call the succes modal", async () => {
+          const {
+            result: {
+              current: { createWish },
+            },
+          } = renderHook(useApi, { wrapper: Wrapper });
+
+          const mockWish = {
+            title: "Navidad en NY",
+            picture: "/NY.png",
+            limitDate: expect.any(Date),
+            description: "Nieve nieve",
+          };
+
+          await act(async () => {
+            await createWish(mockWish);
+          });
+
+          expect(toast.success).toHaveBeenCalledWith(
+            "Wish created successfully!",
+            {
+              position: toast.POSITION.TOP_CENTER,
+            }
+          );
+        });
+      });
+
+      describe("When invoke a create wish without correctly wish", () => {
+        test("Then it should call the error modal", async () => {
+          const {
+            result: {
+              current: { createWish },
+            },
+          } = renderHook(useApi, { wrapper: Wrapper });
+
+          const mockWish = {
+            title: "",
+            picture: "",
+            limitDate: expect.any(Date),
+            description: "",
+          };
+
+          await act(async () => {
+            await createWish(mockWish);
+          });
+
+          expect(toast.error).toHaveBeenCalledWith(
+            "Cannot create the wish :(",
+            {
+              position: toast.POSITION.TOP_CENTER,
+            }
+          );
+        });
+      });
     });
   });
 });

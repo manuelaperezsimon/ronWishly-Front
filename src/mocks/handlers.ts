@@ -128,4 +128,30 @@ export const handlers = [
       return res(ctx.status(404), ctx.json({ error: "Something went wrong" }));
     }
   ),
+
+  rest.post(
+    `${process.env.REACT_APP_API_URL}wishes/`,
+    async (req, res, ctx) => {
+      const body = await req.json();
+      if (!body.picture) {
+        return res(
+          ctx.status(400),
+          ctx.json({
+            error: "Error creating wish",
+          })
+        );
+      }
+
+      return res(
+        ctx.status(201),
+        ctx.json({
+          id: idWish,
+          title: "Navidad en NY",
+          picture: "/NY.png",
+          limitDate: "2022-09-07T19:12:29.422Z",
+          description: "Nieve nieve",
+        })
+      );
+    }
+  ),
 ];
