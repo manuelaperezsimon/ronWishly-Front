@@ -3,10 +3,12 @@ import { useCallback } from "react";
 
 import { toast } from "react-toastify";
 import {
+  createNewWishActionCreator,
   deleteWishActionCreator,
   loadAllWishesActionCreator,
 } from "../../store/features/wishes/slices/wishesSlice";
 import { useAppDispatch } from "../../store/hooks";
+import { IWish } from "../../store/interfaces/wishesInterfaces";
 
 export const successModal = (message: string) =>
   toast.success(message, {
@@ -81,10 +83,35 @@ const useApi = () => {
     }
   }, []);
 
+  const createWish = useCallback(
+    async (newWish: IWish) => {
+      const token = localStorage.getItem("token");
+      const createURL = `${apiURL}wishes/`;
+
+      try {
+        const {
+          data: { wishCreated },
+        } = await axios.post(`${createURL}`, newWish, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        dispatch(createNewWishActionCreator(wishCreated));
+        successModal("Wish created successfully!");
+        return wishCreated;
+      } catch (error) {
+        errorModal("Cannot create the wish :(");
+      }
+    },
+    [dispatch]
+  );
+
   return {
     getAllWishes,
     deleteWish,
     getWishById,
+    createWish,
   };
 };
 
