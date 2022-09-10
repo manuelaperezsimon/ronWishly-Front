@@ -9,4 +9,8 @@ export interface IdWish extends IWish {
   id: string;
 }
 
+export interface NewOrModifyWish extends IWish {
+  id?: string;
+}
+
 export type Wishes = IdWish[];

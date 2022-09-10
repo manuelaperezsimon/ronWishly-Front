@@ -90,7 +90,7 @@ const useApi = () => {
 
       try {
         const {
-          data: { wishCreated },
+          data: { newWish: wishCreated },
         } = await axios.post(`${createURL}`, newWish, {
           headers: {
             Authorization: `Bearer ${token}`,
