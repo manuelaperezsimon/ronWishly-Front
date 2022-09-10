@@ -3,6 +3,7 @@ import wishesSlice, {
   createNewWishActionCreator,
   deleteWishActionCreator,
   loadAllWishesActionCreator,
+  modifyWishActionCreator,
   wishesReducer,
 } from "./wishesSlice";
 
@@ -93,6 +94,61 @@ describe("Given a deleteWishActionCreator function", () => {
       const result = wishesReducer(initialState, actionFake);
 
       expect(result).toStrictEqual(expectedResult);
+    });
+  });
+
+  describe("When called with a modifyWish action with a wish that exists in the state", () => {
+    test("Then it should return an updated state", () => {
+      const initialWishFake: IdWish[] = [
+        {
+          id: "113224",
+          title: "Holis",
+          picture: "/tjth.png",
+          limitDate: new Date(),
+          description: "viajar",
+        },
+      ];
+
+      const modifiedWish: IdWish = {
+        id: "113224",
+        title: "Holis",
+        picture: "/tjth.png",
+        limitDate: new Date(),
+        description: "caminar por el campo",
+      };
+
+      const actionFake = modifyWishActionCreator(modifiedWish);
+
+      const result = wishesReducer(initialWishFake, actionFake);
+
+      expect(result).toStrictEqual([modifiedWish]);
+    });
+  });
+  describe("When called with a modifyWish action with a wish that does not exist in the state", () => {
+    test("Then it should return an wish with the same state", () => {
+      const initialWishFake: IdWish[] = [
+        {
+          id: "113224",
+          title: "Holis",
+          picture: "/tjth.png",
+          limitDate: new Date(),
+          description: "viajar",
+        },
+      ];
+
+      const modifiedWish: IdWish = {
+        id: "113225",
+        title: "Holis",
+        picture: "/tjth.png",
+        limitDate: new Date(),
+        description: "caminar por el campo",
+      };
+
+      const actionFake = modifyWishActionCreator(modifiedWish);
+
+      const result = wishesReducer(initialWishFake, actionFake);
+
+      expect(result).toStrictEqual(initialWishFake);
     });
   });
 });
