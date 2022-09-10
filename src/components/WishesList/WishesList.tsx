@@ -6,9 +6,8 @@ import { RootState } from "../../store/store";
 import WishCard from "../WishCard/WishCard";
 import WishesListStyled from "./WishesListStyled";
 import Button from "../Button/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
-import { NavLink } from "react-router-dom";
 
 const WishesList = (): JSX.Element => {
   const { getAllWishes } = useApi();
