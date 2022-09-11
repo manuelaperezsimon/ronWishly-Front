@@ -1,17 +1,11 @@
-import {
-  createEvent,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { NewOrModifyWish } from "../../store/interfaces/wishesInterfaces";
+import { IWish } from "../../store/interfaces/wishesInterfaces";
 import { store } from "../../store/store";
-import WishForm from "./WishForm";
+import WishFormCreate from "./WishFormCreate";
 
 beforeEach(() => jest.restoreAllMocks());
 
@@ -29,7 +23,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Given a WishForm component", () => {
-  const initialState: NewOrModifyWish = {
+  const initialState: IWish = {
     title: "",
     picture: "",
     limitDate: new Date(),
@@ -40,13 +34,12 @@ describe("Given a WishForm component", () => {
       render(
         <Provider store={store}>
           <BrowserRouter>
-            <WishForm initialState={initialState} />
+            <WishFormCreate />
           </BrowserRouter>
         </Provider>
       );
 
       const elementsInScreen = [
-        screen.getByText("Create your Wish!"),
         screen.getByPlaceholderText("THE title for your wish:)"),
         screen.getByPlaceholderText("In a picture, your fantasy!"),
         screen.getByPlaceholderText("Put a limit date"),
@@ -70,7 +63,7 @@ describe("Given a WishForm component", () => {
       render(
         <Provider store={store}>
           <BrowserRouter>
-            <WishForm initialState={initialState} />
+            <WishFormCreate />
           </BrowserRouter>
         </Provider>
       );
@@ -106,7 +99,7 @@ describe("Given a WishForm component", () => {
       render(
         <Provider store={store}>
           <BrowserRouter>
-            <WishForm initialState={initialState} />
+            <WishFormCreate />
           </BrowserRouter>
         </Provider>
       );
@@ -130,7 +123,7 @@ describe("Given a WishForm component", () => {
 
       render(
         <Provider store={store}>
-          <WishForm initialState={initialState} />
+          <WishFormCreate />
         </Provider>
       );
 
@@ -165,7 +158,7 @@ describe("Given a WishForm component", () => {
       render(
         <Provider store={store}>
           <BrowserRouter>
-            <WishForm initialState={initialState} />
+            <WishFormCreate />
           </BrowserRouter>
         </Provider>
       );
