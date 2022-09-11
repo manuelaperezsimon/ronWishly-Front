@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
 const WishFormStyled = styled.div`
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   background-color: ${(props) => props.theme.greyColor};
   font-size: 20px;
 
@@ -12,16 +15,14 @@ const WishFormStyled = styled.div`
   }
 
   .circles__picture {
-    /* position: absolute;
-    top: -75px;
-    left: -50px; */
+    position: absolute;
+    top: 15px;
+    left: 30px;
   }
 
   .form {
     flex-direction: column;
     padding: 0;
-    margin: 0 auto;
-    gap: 1rem;
     width: fit-content;
     padding: 3rem;
   }
@@ -48,7 +49,23 @@ const WishFormStyled = styled.div`
   }
 
   .icon--close {
-    font-size: 18px;
+    font-size: 60px;
+    display: grid;
+  }
+
+  .inputs__group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input[type="file" i] {
+    background-color: white;
+    text-align: center;
+    padding-left: 20px;
+    width: 302px;
+    display: flex;
+    align-items: center;
   }
 `;
 
