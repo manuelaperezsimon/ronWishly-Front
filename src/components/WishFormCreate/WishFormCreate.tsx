@@ -71,18 +71,18 @@ const WishFormCreate = (): JSX.Element => {
         <h2 className="form__heading">"Create your Wish!"</h2>
         <form
           action=""
-          className="form"
+          className="form-create"
           noValidate
           onSubmit={onSubmitData}
           data-testid="form"
         >
-          <div className="inputs__group">
-            <div className="form__group">
+          <div className="inputs-create__group">
+            <div className="form-create__group">
               <label htmlFor="title" className="form__label"></label>
               <input
                 type="text"
                 id="title"
-                className="form__input input-title"
+                className="form-create__input input-title"
                 placeholder="THE title for your wish:)"
                 autoComplete="off"
                 required
@@ -90,12 +90,12 @@ const WishFormCreate = (): JSX.Element => {
                 onChange={onChangeData}
               />
             </div>
-            <div className="form-register__group">
+            <div className="form-create__group">
               <label htmlFor="picture" className="form__label"></label>
               <input
                 type="file"
                 id="picture"
-                className="form__input input-file"
+                className="form-create__input input-file"
                 placeholder="In a picture, your fantasy!"
                 autoComplete="off"
                 required
@@ -103,12 +103,12 @@ const WishFormCreate = (): JSX.Element => {
                 onChange={onChangeFile}
               />
             </div>
-            <div className="form__group">
+            <div className="form-create__group">
               <label htmlFor="date" className="form__label"></label>
               <input
                 type="date"
                 id="date"
-                className={`form__input`}
+                className={`form-create__input`}
                 placeholder="Put a limit date"
                 autoComplete="off"
                 required
@@ -116,12 +116,12 @@ const WishFormCreate = (): JSX.Element => {
                 onChange={onChangeDate}
               />
             </div>
-            <div className="form__group">
+            <div className="form-create__group">
               <label htmlFor="description" className="form__label"></label>
               <input
                 type="text"
                 id="description"
-                className={`form__input input-repeat-password`}
+                className={`form-create__input`}
                 placeholder="Describe your adventure"
                 autoComplete="off"
                 required
