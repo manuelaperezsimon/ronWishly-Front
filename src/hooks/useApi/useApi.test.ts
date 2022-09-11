@@ -166,8 +166,9 @@ describe("Given a useApi hook", () => {
           });
         });
       });
-      describe("When invoke createWish function with a new wish", () => {
+      describe("When invoke createWish function with a formData", () => {
         test("Then it should call the succes modal", async () => {
+          const wish = new FormData();
           const {
             result: {
               current: { createWish },
@@ -181,8 +182,11 @@ describe("Given a useApi hook", () => {
             description: "Nieve nieve",
           };
 
+          wish.append("wish", JSON.stringify(mockWish));
+          wish.append("picture", new File([], "picture.jng"));
+
           await act(async () => {
-            await createWish(mockWish);
+            await createWish(wish);
           });
 
           expect(toast.success).toHaveBeenCalledWith(
@@ -194,8 +198,11 @@ describe("Given a useApi hook", () => {
         });
       });
 
-      describe("When invoke a create wish without correctly wish", () => {
+      describe("When invoke a create wish without correctly formData", () => {
         test("Then it should call the error modal", async () => {
+          axios.defaults.headers.post["IsTestError"] = true;
+          const wish = new FormData();
+
           const {
             result: {
               current: { createWish },
@@ -209,8 +216,11 @@ describe("Given a useApi hook", () => {
             description: "",
           };
 
+          wish.append("wish", JSON.stringify(mockWish));
+          wish.append("picture", new File([], "picture.jng"));
+
           await act(async () => {
-            await createWish(mockWish);
+            await createWish(wish);
           });
 
           expect(toast.error).toHaveBeenCalledWith(
@@ -219,64 +229,8 @@ describe("Given a useApi hook", () => {
               position: toast.POSITION.TOP_CENTER,
             }
           );
-        });
-      });
 
-      describe("When invoke modifyWish function with an id and the wish to modify", () => {
-        test("Then it should call the succes modal", async () => {
-          const {
-            result: {
-              current: { modifyWish },
-            },
-          } = renderHook(useApi, { wrapper: Wrapper });
-
-          const mockWishModify: NewOrModifyWish = {
-            id: "232464fe42536dd232",
-            title: "Primavera en China",
-            picture: "/china.png",
-            limitDate: expect.any(Date),
-            description: "Calorcito",
-          };
-
-          await act(async () => {
-            await modifyWish("232464fe42536dd232", mockWishModify);
-          });
-
-          expect(toast.success).toHaveBeenCalledWith(
-            "Wish modified successfully!",
-            {
-              position: toast.POSITION.TOP_CENTER,
-            }
-          );
-        });
-      });
-
-      describe("When it's invoked without id", () => {
-        test("Then it should call de error modal", async () => {
-          const {
-            result: {
-              current: { modifyWish },
-            },
-          } = renderHook(useApi, { wrapper: Wrapper });
-
-          const mockWishModify: NewOrModifyWish = {
-            id: "wrongId",
-            title: "Primavera en China",
-            picture: "/china.png",
-            limitDate: expect.any(Date),
-            description: "Calorcito",
-          };
-
-          await act(async () => {
-            await modifyWish("wrongId", mockWishModify);
-          });
-
-          expect(toast.error).toHaveBeenCalledWith(
-            "Cannot modify the wish :(",
-            {
-              position: toast.POSITION.TOP_CENTER,
-            }
-          );
+          delete axios.defaults.headers.post["IsTestError"];
         });
       });
     });
