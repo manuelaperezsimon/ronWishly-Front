@@ -154,4 +154,27 @@ export const handlers = [
       );
     }
   ),
+
+  rest.put(
+    `${process.env.REACT_APP_API_URL}wishes/${idWish}`,
+    async (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          id: idWish,
+          title: "Primavera en China",
+          picture: "/china.png",
+          limitDate: "2022-09-07T19:12:29.422Z",
+          description: "Calorcito",
+        })
+      );
+    }
+  ),
+
+  rest.put(
+    `${process.env.REACT_APP_API_URL}wishes/wrongId`,
+    async (req, res, ctx) => {
+      return res(ctx.status(400), ctx.json({ error: "Error to modify wish" }));
+    }
+  ),
 ];

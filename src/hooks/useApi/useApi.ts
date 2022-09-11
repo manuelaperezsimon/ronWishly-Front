@@ -6,9 +6,13 @@ import {
   createNewWishActionCreator,
   deleteWishActionCreator,
   loadAllWishesActionCreator,
+  modifyWishActionCreator,
 } from "../../store/features/wishes/slices/wishesSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { IWish } from "../../store/interfaces/wishesInterfaces";
+import {
+  IWish,
+  NewOrModifyWish,
+} from "../../store/interfaces/wishesInterfaces";
 
 export const successModal = (message: string) =>
   toast.success(message, {
@@ -107,11 +111,35 @@ const useApi = () => {
     [dispatch]
   );
 
+  const modifyWish = useCallback(
+    async (id: string, wish: NewOrModifyWish) => {
+      const token = localStorage.getItem("token");
+      const modifyURL = `${apiURL}wishes/`;
+
+      try {
+        const {
+          data: { modifiedWish },
+        } = await axios.put(`${modifyURL}${id}`, wish, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        dispatch(modifyWishActionCreator(modifiedWish));
+        successModal("Wish modified successfully!");
+      } catch (error) {
+        errorModal("Cannot modify the wish :(");
+      }
+    },
+    [dispatch]
+  );
+
   return {
     getAllWishes,
     deleteWish,
     getWishById,
     createWish,
+    modifyWish,
   };
 };
 

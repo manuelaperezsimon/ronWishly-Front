@@ -6,6 +6,7 @@ import {
   deleteWishActionCreator,
   loadAllWishesActionCreator,
 } from "../../store/features/wishes/slices/wishesSlice";
+import { NewOrModifyWish } from "../../store/interfaces/wishesInterfaces";
 import Wrapper from "../../utils/Wrapper";
 import useApi from "./useApi";
 
@@ -214,6 +215,64 @@ describe("Given a useApi hook", () => {
 
           expect(toast.error).toHaveBeenCalledWith(
             "Cannot create the wish :(",
+            {
+              position: toast.POSITION.TOP_CENTER,
+            }
+          );
+        });
+      });
+
+      describe("When invoke modifyWish function with an id and the wish to modify", () => {
+        test("Then it should call the succes modal", async () => {
+          const {
+            result: {
+              current: { modifyWish },
+            },
+          } = renderHook(useApi, { wrapper: Wrapper });
+
+          const mockWishModify: NewOrModifyWish = {
+            id: "232464fe42536dd232",
+            title: "Primavera en China",
+            picture: "/china.png",
+            limitDate: expect.any(Date),
+            description: "Calorcito",
+          };
+
+          await act(async () => {
+            await modifyWish("232464fe42536dd232", mockWishModify);
+          });
+
+          expect(toast.success).toHaveBeenCalledWith(
+            "Wish modified successfully!",
+            {
+              position: toast.POSITION.TOP_CENTER,
+            }
+          );
+        });
+      });
+
+      describe("When it's invoked without id", () => {
+        test("Then it should call de error modal", async () => {
+          const {
+            result: {
+              current: { modifyWish },
+            },
+          } = renderHook(useApi, { wrapper: Wrapper });
+
+          const mockWishModify: NewOrModifyWish = {
+            id: "wrongId",
+            title: "Primavera en China",
+            picture: "/china.png",
+            limitDate: expect.any(Date),
+            description: "Calorcito",
+          };
+
+          await act(async () => {
+            await modifyWish("wrongId", mockWishModify);
+          });
+
+          expect(toast.error).toHaveBeenCalledWith(
+            "Cannot modify the wish :(",
             {
               position: toast.POSITION.TOP_CENTER,
             }
