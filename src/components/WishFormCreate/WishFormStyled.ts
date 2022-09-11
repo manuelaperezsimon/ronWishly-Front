@@ -20,14 +20,14 @@ const WishFormStyled = styled.div`
     left: 30px;
   }
 
-  .form {
+  .form-create {
     flex-direction: column;
     padding: 0;
     width: fit-content;
     padding: 3rem;
   }
 
-  .form__group {
+  .form-create__group {
     flex-direction: column;
     display: flex;
     width: 300px;
@@ -38,7 +38,7 @@ const WishFormStyled = styled.div`
     margin-left: 17px;
   }
 
-  .form__input {
+  .form-create__input {
     height: 60px;
     border-radius: 30px;
     margin-bottom: 45px;
@@ -53,7 +53,7 @@ const WishFormStyled = styled.div`
     display: grid;
   }
 
-  .inputs__group {
+  .inputs-create__group {
     display: flex;
     flex-direction: column;
     align-items: center;
