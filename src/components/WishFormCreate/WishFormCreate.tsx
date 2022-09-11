@@ -16,16 +16,28 @@ const WishFormCreate = (): JSX.Element => {
     description: "",
   };
   const { createWish } = useApi();
-  const [newWish, setNewWish] = useState(initialState);
+  const [formWishData, setFormWishData] = useState(initialState);
 
   const onChangeData = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewWish({ ...newWish, [event.target.id]: event.target.value });
+    setFormWishData({ ...formWishData, [event.target.id]: event.target.value });
   };
 
   const onSubmitData = async (event: SyntheticEvent) => {
     event.preventDefault();
 
-    await createWish(newWish);
+    formData.append(
+      "wish",
+      JSON.stringify({
+        title: formWishData.title,
+        limitDate: formWishData.limitDate,
+        description: formWishData.description,
+      })
+    );
+
+    await createWish(formData);
+
+    setFormWishData(initialState);
+    formData = new FormData();
     navigate("/wishes");
   };
 
@@ -39,13 +51,16 @@ const WishFormCreate = (): JSX.Element => {
   const [date, setDate] = useState("");
   const onChangeDate = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDate(event.target.value);
-    setNewWish({ ...newWish, limitDate: new Date(event.target.value) });
+    setFormWishData({
+      ...formWishData,
+      limitDate: new Date(event.target.value),
+    });
   };
 
   const hasOneEmptyField =
-    newWish.title.length < 1 ||
-    newWish.limitDate.toDateString().length < 1 ||
-    newWish.description.length < 1;
+    formWishData.title.length < 1 ||
+    formWishData.limitDate.toDateString().length < 1 ||
+    formWishData.description.length < 1;
 
   const navigateToWishList = () => {
     navigate("/wishes");
@@ -68,7 +83,7 @@ const WishFormCreate = (): JSX.Element => {
             onClick={navigateToWishList}
           />
         </section>
-        <h2 className="form__heading">"Create your Wish!"</h2>
+        <h2 className="form__heading">Create your Wish!</h2>
         <form
           action=""
           className="form-create"
@@ -86,7 +101,7 @@ const WishFormCreate = (): JSX.Element => {
                 placeholder="THE title for your wish:)"
                 autoComplete="off"
                 required
-                value={newWish.title}
+                value={formWishData.title}
                 onChange={onChangeData}
               />
             </div>
@@ -99,7 +114,7 @@ const WishFormCreate = (): JSX.Element => {
                 placeholder="In a picture, your fantasy!"
                 autoComplete="off"
                 required
-                value={newWish.picture}
+                value={formWishData.picture}
                 onChange={onChangeFile}
               />
             </div>
@@ -125,7 +140,7 @@ const WishFormCreate = (): JSX.Element => {
                 placeholder="Describe your adventure"
                 autoComplete="off"
                 required
-                value={newWish.description}
+                value={formWishData.description}
                 onChange={onChangeData}
               />
             </div>

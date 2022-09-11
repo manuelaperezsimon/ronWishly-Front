@@ -9,10 +9,7 @@ import {
   modifyWishActionCreator,
 } from "../../store/features/wishes/slices/wishesSlice";
 import { useAppDispatch } from "../../store/hooks";
-import {
-  IWish,
-  NewOrModifyWish,
-} from "../../store/interfaces/wishesInterfaces";
+import { NewOrModifyWish } from "../../store/interfaces/wishesInterfaces";
 
 export const successModal = (message: string) =>
   toast.success(message, {
@@ -88,15 +85,16 @@ const useApi = () => {
   }, []);
 
   const createWish = useCallback(
-    async (newWish: IWish) => {
+    async (formWishData: FormData) => {
       const token = localStorage.getItem("token");
       const createURL = `${apiURL}wishes/`;
 
       try {
         const {
           data: { newWish: wishCreated },
-        } = await axios.post(`${createURL}`, newWish, {
+        } = await axios.post(`${createURL}`, formWishData, {
           headers: {
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
         });
@@ -121,6 +119,7 @@ const useApi = () => {
           data: { modifiedWish },
         } = await axios.put(`${modifyURL}${id}`, wish, {
           headers: {
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
         });

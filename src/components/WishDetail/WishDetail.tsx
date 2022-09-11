@@ -9,6 +9,8 @@ interface WishDetailProps {
   wish: IdWish;
 }
 
+const urlBack = process.env.REACT_APP_API_URL;
+
 const WishDetail = ({ wish }: WishDetailProps): JSX.Element => {
   let isDisable = false;
 
@@ -58,7 +60,7 @@ const WishDetail = ({ wish }: WishDetailProps): JSX.Element => {
           <div className="wish-detail-container__image">
             <img
               className="wish-detail__image"
-              src={wish.picture}
+              src={`${urlBack}${wish.picture}`}
               alt={wish.title}
               width={"250px"}
             />
