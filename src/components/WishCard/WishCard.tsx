@@ -8,6 +8,8 @@ interface WishCardProps {
   wish: IdWish;
 }
 
+const urlBack = process.env.REACT_APP_API_URL;
+
 const WishCard = ({
   wish: { title, picture, id },
 }: WishCardProps): JSX.Element => {
@@ -31,7 +33,7 @@ const WishCard = ({
           </div>{" "}
           <img
             className="wish-card__image"
-            src={picture}
+            src={`${urlBack}${picture}`}
             alt={title}
             width={"250px"}
           />
