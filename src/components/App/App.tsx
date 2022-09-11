@@ -17,7 +17,8 @@ import { useAppDispatch } from "../../store/hooks";
 import styledMainTheme from "../../styledMainTheme";
 import decodeToken from "../../utils/decodeToken";
 import WishDetailsPage from "../../pages/WishDetailPage/WishDetailPage";
-import WishFormPage from "../../pages/WishFormPage/WishFormPage";
+import WishFormPage from "../../pages/WishFormCreatePage/WishFormCreatePage";
+import WishFormCreate from "../WishFormCreate/WishFormCreate";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -60,7 +61,7 @@ function App() {
           path="/create"
           element={
             <>
-              <WishFormPage />
+              <WishFormCreate />
             </>
           }
         />

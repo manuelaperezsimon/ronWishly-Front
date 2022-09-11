@@ -19,6 +19,10 @@ const WishDetail = ({ wish }: WishDetailProps): JSX.Element => {
     navigate("/wishes");
   };
 
+  const navigateTowishToModify = async () => {
+    navigate(`/modify/${wish.id}`);
+  };
+
   const navigate = useNavigate();
 
   const navigateToWishList = () => {
@@ -73,7 +77,7 @@ const WishDetail = ({ wish }: WishDetailProps): JSX.Element => {
               buttonText="Modify"
               type="button"
               classNameTypeButton="button--small"
-              actionOnclick={() => {}}
+              actionOnclick={navigateTowishToModify}
               isDisable={isDisable}
             />
             <Button
