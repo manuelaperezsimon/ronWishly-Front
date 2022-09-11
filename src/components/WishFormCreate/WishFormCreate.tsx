@@ -2,7 +2,6 @@ import { SyntheticEvent, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import useApi from "../../hooks/useApi/useApi";
-import { wishesReducer } from "../../store/features/wishes/slices/wishesSlice";
 import { IWish } from "../../store/interfaces/wishesInterfaces";
 import Button from "../Button/Button";
 import WishFormStyled from "./WishFormStyled";
