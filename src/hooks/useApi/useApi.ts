@@ -10,7 +10,6 @@ import {
 } from "../../store/features/wishes/slices/wishesSlice";
 import { useAppDispatch } from "../../store/hooks";
 import {
-  IdWish,
   IWish,
   NewOrModifyWish,
 } from "../../store/interfaces/wishesInterfaces";
