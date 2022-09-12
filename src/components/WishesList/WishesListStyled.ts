@@ -18,9 +18,11 @@ const WishesListStyled = styled.div`
     margin-top: 60px;
   }
 
-  .filter {
+  .filter__group {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 
   .list-wishes {
@@ -41,7 +43,7 @@ const WishesListStyled = styled.div`
   }
 
   .filter {
-    display: grid;
+    display: flex;
   }
 
   .filter__input {
@@ -52,6 +54,14 @@ const WishesListStyled = styled.div`
     font-size: 16px;
     font-family: inherit;
     width: 300px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+  }
+
+  .icon--close {
+    align-self: center;
+    margin-left: 10px;
+    font-size: 40px;
     margin-bottom: 20px;
   }
 
@@ -75,7 +85,8 @@ const WishesListStyled = styled.div`
 
   .filter__label {
     margin-bottom: 10px;
-    margin-left: 15px;
+    align-self: start;
+    margin-left: 80px;
   }
 
   .button--big {

@@ -1,4 +1,5 @@
 import { BiLogOut } from "react-icons/bi";
+import { IoIosClose } from "react-icons/io";
 import { useEffect, useState } from "react";
 import useApi from "../../hooks/useApi/useApi";
 import { useAppSelector } from "../../store/hooks";
@@ -17,14 +18,18 @@ const WishesList = (): JSX.Element => {
   const navigate = useNavigate();
   const isDisabled = false;
 
-  const [date, setDate] = useState("");
+  const [filterByLimitDate, setFilterByLimitDate] = useState("");
 
   useEffect(() => {
     getAllWishes();
   }, [getAllWishes]);
 
   const onChangeData = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDate(event.target.value);
+    setFilterByLimitDate(event.target.value);
+  };
+
+  const clearFilter = () => {
+    setFilterByLimitDate("");
   };
 
   const logout = () => {
@@ -66,32 +71,48 @@ const WishesList = (): JSX.Element => {
         ) : (
           <>
             <h2 className="list__heading">Here are your wishes :)</h2>
-            <div className="filter">
+            <div className="filter__group">
               <label htmlFor="date" className="filter__label">
                 Search by limit date:
               </label>
-              <input
-                type="date"
-                id="date"
-                className="filter__input input-limitDate"
-                placeholder="Search by limit date :)"
-                autoComplete="off"
-                required
-                value={date}
-                onChange={onChangeData}
-              />
+              <div className="filter">
+                <input
+                  type="date"
+                  id="date"
+                  className="filter__input input-limitDate"
+                  placeholder="Search by limit date :)"
+                  autoComplete="off"
+                  required
+                  value={filterByLimitDate}
+                  onChange={onChangeData}
+                />
+                <IoIosClose
+                  className="icon--close"
+                  data-testid="icon-close"
+                  onClick={clearFilter}
+                />
+              </div>
             </div>
             <ul className="list-wishes">
-              {wishesList.map((wish) => (
-                <li key={wish.id} className="list__item">
-                  <NavLink
-                    className="wishcard__details"
-                    to={`/wishes/details/${wish.id}`}
-                  >
-                    <WishCard wish={wish} />
-                  </NavLink>
-                </li>
-              ))}
+              {wishesList
+                .filter((wish) => {
+                  if (!filterByLimitDate) {
+                    return true;
+                  }
+                  return (
+                    new Date(wish.limitDate) <= new Date(filterByLimitDate)
+                  );
+                })
+                .map((wish) => (
+                  <li key={wish.id} className="list__item">
+                    <NavLink
+                      className="wishcard__details"
+                      to={`/wishes/details/${wish.id}`}
+                    >
+                      <WishCard wish={wish} />
+                    </NavLink>
+                  </li>
+                ))}
             </ul>
             <div className="container__button">
               <Button

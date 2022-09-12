@@ -114,7 +114,7 @@ const useApi = () => {
 
       try {
         const {
-          data: { modifiedWish },
+          data: { upDatedWish },
         } = await axios.put(`${modifyURL}${id}`, wish, {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -122,7 +122,8 @@ const useApi = () => {
           },
         });
 
-        dispatch(modifyWishActionCreator(modifiedWish));
+        dispatch(modifyWishActionCreator(upDatedWish));
+
         successModal("Wish modified successfully!");
       } catch (error) {
         errorModal("Cannot modify the wish :(");
