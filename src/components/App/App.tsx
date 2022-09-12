@@ -17,8 +17,8 @@ import { useAppDispatch } from "../../store/hooks";
 import styledMainTheme from "../../styledMainTheme";
 import decodeToken from "../../utils/decodeToken";
 import WishDetailsPage from "../../pages/WishDetailPage/WishDetailPage";
-import WishFormPage from "../../pages/WishFormCreatePage/WishFormCreatePage";
-import WishFormCreate from "../WishFormCreate/WishFormCreate";
+import WishFormCreatePage from "../../pages/WishFormCreatePage/WishFormCreatePage";
+import WishFormModifyPage from "../../pages/WishFormModifyPage/WishFormModifyPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -55,24 +55,17 @@ function App() {
             </>
           }
         />
-        <Route path="/wishes/details/:id" element={<WishDetailsPage />} />
-        <Route path="/*" element={<PageNotFoundPage />} />
-        <Route
-          path="/create"
-          element={
-            <>
-              <WishFormCreate />
-            </>
-          }
-        />
         <Route
           path="/modify/:id"
           element={
             <>
-              <WishFormPage />
+              <WishFormModifyPage />
             </>
           }
         />
+        <Route path="/wishes/details/:id" element={<WishDetailsPage />} />
+        <Route path="/*" element={<PageNotFoundPage />} />
+        <Route path="/create" element={<WishFormCreatePage />} />
       </Routes>
     </ThemeProvider>
   );
