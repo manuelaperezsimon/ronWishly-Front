@@ -17,8 +17,8 @@ jest.mock("../../store/hooks", () => ({
   useAppSelector: () => mockUseAppSelector(),
 }));
 
-describe("Given a WishFormPage component", () => {
-  describe("When not receives an id", () => {
+describe("Given a WishFormCreatePage component", () => {
+  describe("When it's instantiated", () => {
     test("Then it should rendered the create component", () => {
       mockUseParams.mockReturnValue({ id: undefined });
       mockUseAppSelector.mockReturnValue([]);
