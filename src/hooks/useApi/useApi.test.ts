@@ -105,7 +105,7 @@ describe("Given a useApi hook", () => {
         });
       });
 
-      describe("When called with an invalid project id", () => {
+      describe("When called with an invalid wish id", () => {
         test("Then it should not dispatch the delete action", async () => {
           await act(async () => {
             await deleteWish("wrongId");

@@ -36,38 +36,6 @@ const WishesList = (): JSX.Element => {
     navigate("/create");
   };
 
-  if (wishesList.length === 0) {
-    return (
-      <>
-        <WishesListStyled>
-          <section className="header__container">
-            <h1>
-              <img
-                src="img/circles.png"
-                alt="two circles yellow"
-                className="circles__picture circles__picture--big"
-                width={"80px"}
-              />
-            </h1>
-            <div className="icon__logout">
-              <BiLogOut onClick={logout} data-testid="icon-logout" />
-            </div>
-          </section>
-          <div className="container">
-            <h2 className="list__heading">Don't you have any wish yet?</h2>
-            <Button
-              buttonText="Create wish"
-              type="button"
-              classNameTypeButton="button button--big"
-              actionOnclick={createWish}
-              isDisable={isDisabled}
-            />
-          </div>
-        </WishesListStyled>
-      </>
-    );
-  }
-
   return (
     <WishesListStyled>
       <section className="header__container">
@@ -83,42 +51,59 @@ const WishesList = (): JSX.Element => {
           <BiLogOut onClick={logout} data-testid="icon-logout" />
         </div>
       </section>
-      <h2 className="list__heading">Here are your wishes :)</h2>
-      <div className="filter">
-        <label htmlFor="date" className="filter__label">
-          Search by limit date:
-        </label>
-        <input
-          type="date"
-          id="date"
-          className="filter__input input-limitDate"
-          placeholder="Search by limit date :)"
-          autoComplete="off"
-          required
-          value={date}
-          onChange={onChangeData}
-        />
-      </div>
-      <ul className="list-wishes">
-        {wishesList.map((wish) => (
-          <li key={wish.id} className="list__item">
-            <NavLink
-              className="wishcard__details"
-              to={`/wishes/details/${wish.id}`}
-            >
-              <WishCard wish={wish} />
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-      <div className="container__button">
-        <Button
-          buttonText="Create wish"
-          type="button"
-          classNameTypeButton="button button--big"
-          actionOnclick={createWish}
-          isDisable={isDisabled}
-        />
+      <div className="container">
+        {!wishesList.length ? (
+          <>
+            <h2 className="list__heading">Don't you have any wish yet?</h2>
+            <Button
+              buttonText="Create wish"
+              type="button"
+              classNameTypeButton="button button--big create-wish"
+              actionOnclick={createWish}
+              isDisable={isDisabled}
+            />
+          </>
+        ) : (
+          <>
+            <h2 className="list__heading">Here are your wishes :)</h2>
+            <div className="filter">
+              <label htmlFor="date" className="filter__label">
+                Search by limit date:
+              </label>
+              <input
+                type="date"
+                id="date"
+                className="filter__input input-limitDate"
+                placeholder="Search by limit date :)"
+                autoComplete="off"
+                required
+                value={date}
+                onChange={onChangeData}
+              />
+            </div>
+            <ul className="list-wishes">
+              {wishesList.map((wish) => (
+                <li key={wish.id} className="list__item">
+                  <NavLink
+                    className="wishcard__details"
+                    to={`/wishes/details/${wish.id}`}
+                  >
+                    <WishCard wish={wish} />
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            <div className="container__button">
+              <Button
+                buttonText="Create wish"
+                type="button"
+                classNameTypeButton="button button--big"
+                actionOnclick={createWish}
+                isDisable={isDisabled}
+              />
+            </div>
+          </>
+        )}
       </div>
     </WishesListStyled>
   );
