@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const WishesListStyled = styled.div`
   margin-top: 50px;
+  margin-bottom: 100px;
 
   .circles__picture--big {
     position: absolute;
@@ -62,7 +63,7 @@ const WishesListStyled = styled.div`
   }
 
   .container {
-    margin-top: 200px;
+    margin-top: 100px;
   }
 
   .icon__logout {
@@ -75,6 +76,15 @@ const WishesListStyled = styled.div`
   .filter__label {
     margin-bottom: 10px;
     margin-left: 15px;
+  }
+
+  .button--big {
+    margin-bottom: 15px;
+  }
+
+  .wishcard__details {
+    text-decoration: none;
+    color: ${(props) => props.theme.blackColor};
   }
 `;
 
