@@ -17,9 +17,7 @@ import { useAppDispatch } from "../../store/hooks";
 import styledMainTheme from "../../styledMainTheme";
 import decodeToken from "../../utils/decodeToken";
 import WishDetailsPage from "../../pages/WishDetailPage/WishDetailPage";
-import WishFormCreate from "../WishFormCreate/WishFormCreate";
 import WishFormCreatePage from "../../pages/WishFormCreatePage/WishFormCreatePage";
-import WishFormModify from "../WishFormModify/WishFormModify";
 import WishFormModifyPage from "../../pages/WishFormModifyPage/WishFormModifyPage";
 
 function App() {
