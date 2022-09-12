@@ -1,7 +1,7 @@
 import WishFormCreate from "../../components/WishFormCreate/WishFormCreate";
 
-const WishFormPage = (): JSX.Element => {
+const WishFormCreatePage = (): JSX.Element => {
   return <WishFormCreate />;
 };
 
-export default WishFormPage;
+export default WishFormCreatePage;
