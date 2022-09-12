@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useCallback } from "react";
-
 import { toast } from "react-toastify";
 import {
   createNewWishActionCreator,
@@ -9,7 +8,6 @@ import {
   modifyWishActionCreator,
 } from "../../store/features/wishes/slices/wishesSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { NewOrModifyWish } from "../../store/interfaces/wishesInterfaces";
 
 export const successModal = (message: string) =>
   toast.success(message, {
@@ -110,7 +108,7 @@ const useApi = () => {
   );
 
   const modifyWish = useCallback(
-    async (id: string, wish: NewOrModifyWish) => {
+    async (wish: FormData, id: string) => {
       const token = localStorage.getItem("token");
       const modifyURL = `${apiURL}wishes/`;
 

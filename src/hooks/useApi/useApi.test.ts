@@ -6,7 +6,6 @@ import {
   deleteWishActionCreator,
   loadAllWishesActionCreator,
 } from "../../store/features/wishes/slices/wishesSlice";
-import { NewOrModifyWish } from "../../store/interfaces/wishesInterfaces";
 import Wrapper from "../../utils/Wrapper";
 import useApi from "./useApi";
 
@@ -231,6 +230,61 @@ describe("Given a useApi hook", () => {
           );
 
           delete axios.defaults.headers.post["IsTestError"];
+        });
+      });
+
+      describe("When invoked a modifyWish function with a formData", () => {
+        test("Then it should call the succes modal", async () => {
+          const wish = new FormData();
+
+          const {
+            result: {
+              current: { modifyWish },
+            },
+          } = renderHook(useApi);
+
+          const idWish: string = "232464fe42536dd232";
+
+          const mockWish = {
+            title: "Navidad en NY",
+            picture: "/NY.png",
+            limitDate: expect.any(Date),
+            description: "Nieve nieve",
+          };
+
+          wish.append("wish", JSON.stringify(mockWish));
+          wish.append("picture", new File([], "picture.jng"));
+
+          await act(async () => {
+            await modifyWish(wish, idWish);
+          });
+
+          expect(toast.success).toHaveBeenCalledWith(
+            "Wish modified successfully!",
+            {
+              position: toast.POSITION.TOP_CENTER,
+            }
+          );
+        });
+      });
+
+      describe("When invoked a modifyWish without a correctly id", () => {
+        test("Then it should call the error modal", async () => {
+          const wish = new FormData();
+          const {
+            result: {
+              current: { modifyWish },
+            },
+          } = renderHook(useApi, { wrapper: Wrapper });
+
+          await modifyWish(wish, "wrongId");
+
+          expect(toast.error).toHaveBeenCalledWith(
+            "Cannot modify the wish :(",
+            {
+              position: toast.POSITION.TOP_CENTER,
+            }
+          );
         });
       });
     });
