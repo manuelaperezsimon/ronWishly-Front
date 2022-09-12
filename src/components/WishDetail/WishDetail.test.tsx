@@ -91,4 +91,23 @@ describe("Given a WishDetail component", () => {
       await expect(mockNavigate).toHaveBeenCalled();
     });
   });
+
+  describe("When click on modify button", () => {
+    test("Then the navigate function will be called", async () => {
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <WishDetail key={wish.id} wish={wish} />
+          </BrowserRouter>
+        </Provider>
+      );
+
+      const buttonModify = screen.getByRole("button", { name: "Modify" });
+
+      await userEvent.click(buttonModify);
+
+      expect(buttonModify).toBeInTheDocument();
+      await expect(mockNavigate).toHaveBeenCalled();
+    });
+  });
 });
