@@ -3,6 +3,7 @@ export interface IWish {
   picture: string;
   limitDate: Date;
   description: string;
+  imageBackUp?: string;
 }
 
 export interface IdWish extends IWish {
