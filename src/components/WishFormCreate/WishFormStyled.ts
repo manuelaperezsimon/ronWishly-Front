@@ -51,6 +51,8 @@ const WishFormStyled = styled.div`
   .icon--close {
     font-size: 60px;
     display: grid;
+    margin-top: 40px;
+    margin-left: 250px;
   }
 
   .inputs-create__group {
