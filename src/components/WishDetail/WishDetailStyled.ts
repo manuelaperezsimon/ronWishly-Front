@@ -3,6 +3,7 @@ import styled from "styled-components";
 const WishDetailStyled = styled.div`
   display: grid;
   justify-content: space-around;
+  margin-bottom: 50px;
 
   .wish-detail__section {
     background-color: white;

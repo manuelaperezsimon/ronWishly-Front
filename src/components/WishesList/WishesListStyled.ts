@@ -63,6 +63,11 @@ const WishesListStyled = styled.div`
     margin-left: 10px;
     font-size: 40px;
     margin-bottom: 20px;
+    visibility: hidden;
+  }
+
+  .icon--close.icon-close__open {
+    visibility: visible;
   }
 
   .container__button {
@@ -86,7 +91,8 @@ const WishesListStyled = styled.div`
   .filter__label {
     margin-bottom: 10px;
     align-self: start;
-    margin-left: 80px;
+    display: flex;
+    align-self: center;
   }
 
   .button--big {

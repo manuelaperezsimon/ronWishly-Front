@@ -19,6 +19,7 @@ const WishesList = (): JSX.Element => {
   const isDisabled = false;
 
   const [filterByLimitDate, setFilterByLimitDate] = useState("");
+  const [fieldStatus, setFieldStatus] = useState("");
 
   useEffect(() => {
     getAllWishes();
@@ -26,9 +27,11 @@ const WishesList = (): JSX.Element => {
 
   const onChangeData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilterByLimitDate(event.target.value);
+    setFieldStatus("icon-close__open");
   };
 
   const clearFilter = () => {
+    setFieldStatus("icon-close__close");
     setFilterByLimitDate("");
   };
 
@@ -73,7 +76,7 @@ const WishesList = (): JSX.Element => {
             <h2 className="list__heading">Here are your wishes :)</h2>
             <div className="filter__group">
               <label htmlFor="date" className="filter__label">
-                Search by limit date:
+                Search by date before than:
               </label>
               <div className="filter">
                 <input
@@ -87,7 +90,7 @@ const WishesList = (): JSX.Element => {
                   onChange={onChangeData}
                 />
                 <IoIosClose
-                  className="icon--close"
+                  className={`icon--close ${fieldStatus}`}
                   data-testid="icon-close"
                   onClick={clearFilter}
                 />
