@@ -56,15 +56,13 @@ const useUser = () => {
         userData
       );
 
-      if (token) {
-        const userInfo: User = decodeToken(token);
+      const userInfo: User = decodeToken(token);
 
-        dispatch(loginUsersActionCreator(userInfo));
-        localStorage.setItem("token", token);
-        navigate("/wishes");
+      dispatch(loginUsersActionCreator(userInfo));
+      localStorage.setItem("token", token);
+      navigate("/wishes");
 
-        return true;
-      }
+      return true;
     } catch (error: any) {
       errorModal("Oops! Something went wrong, try again...");
       return error.message;
