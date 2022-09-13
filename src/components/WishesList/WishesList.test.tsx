@@ -93,7 +93,7 @@ describe("Given a WishList component", () => {
       });
 
       const dateInput = screen.getByLabelText(
-        "Search by limit date:"
+        "Search by date before than:"
       ) as HTMLInputElement;
 
       await userEvent.type(dateInput, filterDate);
