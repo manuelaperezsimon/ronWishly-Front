@@ -118,7 +118,6 @@ const useApi = () => {
       const modifyURL = `${apiURL}wishes/`;
 
       try {
-        loadingModal("Please wait :)");
         const {
           data: { upDatedWish },
         } = await axios.put(`${modifyURL}${id}`, wish, {
