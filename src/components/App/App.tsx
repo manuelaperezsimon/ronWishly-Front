@@ -7,7 +7,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import ProtectorReverse from "../ProtectorReverse/ProtectorReverse";
 import LoginFormPage from "../../pages/LoginPage/LoginFormPage";
 import PageNotFoundPage from "../../pages/PageNotFoundPage/PageNotFoundPage";
 import RegisterFormPage from "../../pages/RegisterPage/RegisterFormPage";
@@ -39,14 +38,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/register" />} />
         <Route path="/register" element={<RegisterFormPage />} />
-        <Route
-          path="/login"
-          element={
-            <ProtectorReverse>
-              <LoginFormPage />
-            </ProtectorReverse>
-          }
-        />
+        <Route path="/login" element={<LoginFormPage />} />
         <Route
           path="/wishes"
           element={
