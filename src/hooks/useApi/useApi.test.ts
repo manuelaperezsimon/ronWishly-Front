@@ -286,6 +286,36 @@ describe("Given a useApi hook", () => {
             }
           );
         });
+        test("Then it should send a loading modal", async () => {
+          const wish = new FormData();
+          const {
+            result: {
+              current: { modifyWish },
+            },
+          } = renderHook(useApi, { wrapper: Wrapper });
+
+          const idWish: string = "232464fe42536dd232";
+
+          const mockWish = {
+            title: "Navidad en NY",
+            picture: "/NY.png",
+            limitDate: expect.any(Date),
+            description: "Nieve nieve",
+          };
+
+          wish.append("wish", JSON.stringify(mockWish));
+          wish.append("picture", new File([], "picture.jng"));
+
+          await act(async () => {
+            await modifyWish(wish, idWish);
+          });
+
+          await waitFor(() => {
+            expect(toast.loading).toHaveBeenCalledWith("Please wait :)", {
+              position: toast.POSITION.TOP_CENTER,
+            });
+          });
+        });
       });
     });
   });

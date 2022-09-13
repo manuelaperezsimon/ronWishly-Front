@@ -19,6 +19,11 @@ export const errorModal = (error: string) =>
     position: toast.POSITION.TOP_CENTER,
   });
 
+export const loadingModal = (loading: string) =>
+  toast.loading(loading, {
+    position: toast.POSITION.TOP_CENTER,
+  });
+
 const apiURL = process.env.REACT_APP_API_URL;
 
 const useApi = () => {
@@ -113,6 +118,7 @@ const useApi = () => {
       const modifyURL = `${apiURL}wishes/`;
 
       try {
+        loadingModal("Please wait :)");
         const {
           data: { upDatedWish },
         } = await axios.put(`${modifyURL}${id}`, wish, {
