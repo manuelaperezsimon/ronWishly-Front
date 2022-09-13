@@ -132,4 +132,26 @@ describe("Given a WishFormModify component", () => {
       expect(mockNavigate).toHaveBeenCalled();
     });
   });
+
+  describe("When the user change the limit date input", () => {
+    test("Then it should call the onChangeDate function", async () => {
+      const filterDate = "2022-09-16";
+
+      render(
+        <Provider store={store}>
+          <BrowserRouter>
+            <WishFormModify wish={wish} />
+          </BrowserRouter>
+        </Provider>
+      );
+
+      const dateInput = screen.getByPlaceholderText(
+        "Put a limit date"
+      ) as HTMLInputElement;
+
+      await userEvent.type(dateInput, filterDate);
+
+      expect(dateInput.value).toBe(filterDate);
+    });
+  });
 });
