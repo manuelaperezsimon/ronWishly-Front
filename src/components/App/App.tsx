@@ -26,11 +26,14 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+
     if (token) {
       const localUser = decodeToken(token);
       dispatch(loginUsersActionCreator(localUser));
+      navigate(pathname);
+    } else {
+      navigate(pathname);
     }
-    navigate(pathname);
   }, [dispatch, navigate, pathname]);
 
   return (
