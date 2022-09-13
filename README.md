@@ -6,7 +6,7 @@ The technologies used for this proyect were:
 
 ### 🔸 Front
 
-React | Redux | SPA | Styled Components | Typescript | Jest | MSW
+React | Redux | SPA | Styled Components | Typescript | Jest | MSW | Toastify
 
 ### 🔸 Back
 
