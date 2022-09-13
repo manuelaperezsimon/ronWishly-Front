@@ -33,7 +33,7 @@ const WishCard = ({
             className="wish-card__image"
             src={imageBackUp}
             alt={title}
-            width={"250px"}
+            width={"250"}
           />
           <h3 className="wish-card__title">{title}</h3>
         </div>
