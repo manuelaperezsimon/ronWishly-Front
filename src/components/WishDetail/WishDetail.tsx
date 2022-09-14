@@ -60,7 +60,8 @@ const WishDetail = ({ wish }: WishDetailProps): JSX.Element => {
               className="wish-detail__image"
               src={wish.imageBackUp}
               alt={wish.title}
-              width={"250"}
+              width="250"
+              height="230"
             />
           </div>
           <div className="wish-detail__container">
