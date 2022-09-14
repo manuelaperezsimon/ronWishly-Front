@@ -42,6 +42,7 @@ const WishDetailStyled = styled.div`
   .wish-detail__image {
     border-radius: 16px;
     height: 230px;
+    object-fit: cover;
   }
 
   .wish-detail-container__image {

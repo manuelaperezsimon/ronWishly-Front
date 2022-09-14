@@ -15,6 +15,7 @@ const WishCardStyled = styled.div`
     height: 200px;
     border-radius: 16px;
     margin-top: 20px;
+    object-fit: cover;
   }
 
   .wish-card__title {
