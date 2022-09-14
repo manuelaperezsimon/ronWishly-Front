@@ -6,11 +6,11 @@ The technologies used for this proyect were:
 
 ### 🔸 Front
 
-React | Redux | SPA | Styled Components | Typescript | Jest | MSW | Toastify
+React | Redux | React-router-dom | SPA | Styled Components | Typescript | Axios | Jest | MSW | Toastify
 
 ### 🔸 Back
 
-NodeJS | ExpressJS | MongoDB | Mongoose | JWT | Supabase | Jest | Supertest
+NodeJS | ExpressJS | MongoDB | Mongoose | JWT validation | Bcrypt | Joi validation | Supabase | Jest | Supertest | Mongo Memory Server
 
 ### 🔸 Tools
 
